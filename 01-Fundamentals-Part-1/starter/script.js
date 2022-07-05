@@ -11,3 +11,11 @@ if (js == 'amazing') {
 }
 
 console.log(40 + 8 - 28 + 15);
+
+///////////////////////////////////
+// Brief Introduction to JavaScript
+///////////////////////////////////
+
+// What's JavaScript?
+// JavaScript is a High level, Multi-Paradigm, OOP language
+
