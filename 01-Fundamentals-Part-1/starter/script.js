@@ -72,7 +72,6 @@ NOT SO IMPORTANT:
 6. Symbol(ES2015) 👉 value that is unique and cannot be changed.
 7. BigInt(ES2022) 👉 Larger integer than Number Data type can hold.
 
-*/
 
 let javascriptIsFun = true;
 console.log(javascriptIsFun);
@@ -94,3 +93,21 @@ console.log(typeof year);
 // BUG IN JS
 console.log(typeof null);
 
+*/
+
+///////////////////////////////////
+// 3 TYPES WE CAN DECLARE A VARIABLE. (LET, CONST, VAR)
+///////////////////////////////////
+let age = 16;
+age = 17;   // mutable
+console.log(age)
+
+const birthYear = 2005;
+// birthYear = 2004;  // immutable
+console.log(birthYear);
+
+var job = "Programmer";
+job = "Engineer";
+
+lastName = "Naik";
+console.log(lastName);
