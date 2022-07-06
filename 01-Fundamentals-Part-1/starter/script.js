@@ -172,7 +172,7 @@ const avarageAge =
 console.log(avarageAge);
 
 */
-
+/*
 ///////////////////////////////////
 // STRINGS & TEMPLATE LITERALS
 ///////////////////////////////////
@@ -198,3 +198,27 @@ lines...");
 console.log(`String with
 multiple 
 lines....`)
+*/
+
+
+///////////////////////////////////
+// IF / ELSE statements
+///////////////////////////////////
+const age = 17;
+
+if (age >= 18) {
+    console.log("Sarah can drive 🚗");
+} else {
+    console.log(`Sarah is too young. wait for another ${18 - age} year(s) :)`);
+}
+
+const birthYear = 2005;
+
+let century;
+if (birthYear >= 2000) {
+    century = 21;
+} else {
+    century = 20;
+}
+
+console.log(century);
