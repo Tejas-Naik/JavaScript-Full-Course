@@ -93,7 +93,6 @@ console.log(typeof year);
 // BUG IN JS
 console.log(typeof null);
 
-*/
 
 ///////////////////////////////////
 // 3 TYPES WE CAN DECLARE A VARIABLE. (LET, CONST, VAR)
@@ -111,3 +110,65 @@ job = "Engineer";
 
 lastName = "Naik";
 console.log(lastName);
+
+*/
+
+/*
+///////////////////////////////////
+// BASIC OPERATORS
+///////////////////////////////////
+// Mathematical Operators...
+const now = 2022;
+const ageTejas = now - 2005;
+const ageSarah = now - 2007;
+console.log(ageTejas, ageSarah);
+
+console.log(ageTejas * 2); 
+console.log(ageTejas / 2);
+console.log("Power:", 2 ** 3);
+
+const firstName = "Tejas";
+const lastName = "Naik";
+console.log(firstName + " " + lastName);
+
+// Assignment Operators... (=, +=, -=, *=, /=)
+let x = 10 + 5;
+x += 10;            // x = x + 10 = 25;
+x *= 4;             // x = x * 4 = 100;
+x++                 // x + 1
+x--                 // x - 1
+console.log(x);
+
+
+// Comparison operator 👉 Boolean ( > , < , => , =< , ==, === )
+console.log(10 < 1);
+console.log(ageTejas > ageSarah);
+console.log(ageTejas >= 18);
+*/
+
+/*
+///////////////////////////////////
+// OPERATOR PRECEDENCE
+///////////////////////////////////
+// so there are some operators that have more precedence value than 
+// others so they ecevute before the less precedence values
+
+// Search MDN Operator precedence
+
+console.log(2022 - 2005 > 2022 - 2006);
+// In the above case we see that the mathematical operators have 
+//      more precedence than comparison operator
+
+let x, y;
+x = y = 25 - 10 - 5;
+console.log(x, y);
+
+console.log(2022 - 2005);
+
+const avarageAge =
+    ((2022 - 2005) + (2022 - 2005)) / 2
+    ;
+
+console.log(avarageAge);
+
+*/
