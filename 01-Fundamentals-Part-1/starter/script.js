@@ -172,3 +172,29 @@ const avarageAge =
 console.log(avarageAge);
 
 */
+
+///////////////////////////////////
+// STRINGS & TEMPLATE LITERALS
+///////////////////////////////////
+const firstName = "Tejas";
+const job = "Programmer";
+const birthYear = 2005;
+const year = 2022;
+
+const tejas = "I'm " + firstName + ", a " + (year - birthYear) + " years old " + job + "!";
+console.log(tejas);
+
+// Template literals
+const tejasNew = `I'm ${firstName}, a ${year - birthYear} years old ${job}!`;
+console.log(tejasNew);
+
+console.log(`Just a regular string...`);
+
+// Multi-line string
+console.log("string with \n\
+multiple\n\
+lines...");
+
+console.log(`String with
+multiple 
+lines....`)
