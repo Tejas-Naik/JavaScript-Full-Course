@@ -200,7 +200,7 @@ multiple
 lines....`)
 */
 
-
+/*
 ///////////////////////////////////
 // IF / ELSE statements
 ///////////////////////////////////
@@ -222,3 +222,27 @@ if (birthYear >= 2000) {
 }
 
 console.log(century);
+*/
+
+///////////////////////////////////
+// TYPE CONVERSION / COERcION
+///////////////////////////////////
+// type conversion = manually chance the data type, 
+
+const inputYear = '1991';
+console.log(Number(inputYear), inputYear);
+console.log(Number(inputYear) + 18);
+
+console.log(Number("Jonas"));       // Not a Number
+console.log(typeof NaN);            // number but invalid
+
+console.log(String(23));
+
+// type coercion = when javascript changes the data type
+console.log('23' + '10' + 3);       // +  will convert to strings
+console.log('23' - '10' - 3);       // -  will convert to numbers
+console.log('23' * '10');       // /  will convert to numbers
+console.log('23' / '10');       // *  will convert to numbers
+
+console.log('23' + '10' - 3);
+
