@@ -249,7 +249,7 @@ console.log('23' + '10' - 3);
 
 */
 
-
+/*
 ///////////////////////////////////
 // TRUTHY AND FALSY VALUES
 ///////////////////////////////////
@@ -280,4 +280,41 @@ if (height) {
 }
 else {
     console.log("Height is UNDEFINED!")
+}
+*/
+
+///////////////////////////////////
+// Equality Operators: == vs. ===
+///////////////////////////////////
+const age = 18;
+// Strict equality doesnt perform type coercion
+if (age === 18) console.log("You are an adult now (strict)");
+
+// Loose equality does perform type coersion
+if (age == '18') console.log("You are an adult now (loose)");
+
+const favorite = Number(prompt("What's your favorite number? "));
+
+// Loose
+if (favorite == 23) {
+    console.log('Cool! 23 is an awesome number! (loose)');
+}
+// strict
+if (favorite === 23) {
+    console.log('Cool! 23 is an awesome number!');
+} else if (favorite === 7) {
+    console.log("Amazing, 7 is great number!");
+} else if (favorite === 9) {
+    console.log("Amazing, 9 is great number!");
+} else {
+    console.log("Number is not 23 or 7 or 9");
+}
+
+// not
+if (favorite !== 7) {
+    console.log("Why not 7??... ;)")
+}
+
+if (!favorite) {
+    console.log("Hey hey not a correct answer ;)")
 }
