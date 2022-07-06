@@ -283,6 +283,7 @@ else {
 }
 */
 
+/*
 ///////////////////////////////////
 // Equality Operators: == vs. ===
 ///////////////////////////////////
@@ -317,4 +318,42 @@ if (favorite !== 7) {
 
 if (!favorite) {
     console.log("Hey hey not a correct answer ;)")
+}
+*/
+
+///////////////////////////////////
+// Equality Operators: == vs. ===
+///////////////////////////////////
+
+// logical operators:
+// AND
+// only true if all the values are true otherwise its false
+
+// OR
+// only false when all the values are false otherwise true
+
+// NOT
+// it reverses the boolean values if true then not true is false and wise versa
+
+const hasDriversLicence = true;
+const hasGoodVision = true;
+
+console.log(hasDriversLicence && hasGoodVision);
+console.log(hasDriversLicence || hasGoodVision);
+console.log(!hasDriversLicence);
+
+
+// if (hasDriversLicence && hasGoodVision) {
+//     console.log("Sarah is able to drive!");
+// } else {
+//     console.log("Someone else should drive...");
+// }
+
+const isTired = false;
+console.log(hasDriversLicence && hasGoodVision && !isTired);
+
+if (hasDriversLicence && hasGoodVision && !isTired) {
+    console.log("Sarah is able to drive!");
+} else {
+    console.log("Someone else should drive...");
 }
