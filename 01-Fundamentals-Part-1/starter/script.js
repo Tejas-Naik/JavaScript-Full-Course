@@ -321,11 +321,11 @@ if (!favorite) {
 }
 */
 
+/*
 ///////////////////////////////////
-// Equality Operators: == vs. ===
+// Logical Operators &&, ||, !not
 ///////////////////////////////////
 
-// logical operators:
 // AND
 // only true if all the values are true otherwise its false
 
@@ -357,3 +357,36 @@ if (hasDriversLicence && hasGoodVision && !isTired) {
 } else {
     console.log("Someone else should drive...");
 }
+
+*/
+
+///////////////////////////////////
+// Switch Statement...
+///////////////////////////////////
+const day = 'monday';
+
+switch(day) {
+    case 'monday':
+        console.log("Plan the week");
+        console.log("Go to coding meetup.");
+        break;
+    case 'tuesday':
+        console.log("Prepare theory videos.");
+        break;
+    case 'wednesday':
+    case 'thursday':
+        console.log("Write code examples");
+        break;
+    case 'friday':
+        console.log("Record videos");
+        break;
+    case 'saturday':
+    case 'sunday':
+        console.log("Enjoy the weekend! :D");
+        break;
+    default:
+        console.log("Not a valid day :(");
+        break;
+}
+
+// Use switch if you want to avoid some repetative stuff in if/else statements
