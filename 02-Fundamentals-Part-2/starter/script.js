@@ -71,6 +71,8 @@ console.log(age2);
 
 */
 
+/*
+
 ///////////////////////////////
 // ARROW FUNCTIONS
 ///////////////////////////////
@@ -91,3 +93,24 @@ const yearsUntilRetirement = (firstName, birthYear) => {
 
 console.log(yearsUntilRetirement("Tejas", 2005));
 console.log(yearsUntilRetirement("Jonas", 1991));
+
+*/
+
+///////////////////////////////
+// NESTED FUNCTIONS(calling other functions)
+///////////////////////////////
+
+const fruitCutter = function (fruit) {
+    return fruit * 4;
+}
+
+function fruitProcessor(apples, oranges) {
+    const applePieces = fruitCutter(apples);
+    const orangePieces = fruitCutter(oranges);
+
+    const juice = `Juice with ${applePieces} apple pieces and ${orangePieces} orange pieces`;
+    return juice;
+}
+
+console.log(fruitProcessor(1, 1));
+
