@@ -4,7 +4,7 @@
 let hasDriversLicence = false;
 const passTest = true;
 
-if (passTest) hasDriverLicence = true;      
+if (passTest) hasDriverLicence = true;
 if (hasDriversLicence) console.log("I can drive...");
 
 // const interface = "Audio";
@@ -96,6 +96,8 @@ console.log(yearsUntilRetirement("Jonas", 1991));
 
 */
 
+/*
+
 ///////////////////////////////
 // NESTED FUNCTIONS(calling other functions)
 ///////////////////////////////
@@ -114,3 +116,26 @@ function fruitProcessor(apples, oranges) {
 
 console.log(fruitProcessor(1, 1));
 
+*/
+///////////////////////////////
+// Reviewing FUNCTIONS
+///////////////////////////////
+
+const calcAge = birthYear => 2022 - birthYear;
+
+const yearsUntilRetirement = function (firstName, birthYear) {
+    let age = calcAge(birthYear);
+    let retirementYears = 65 - age;
+
+    if (retirementYears >= 0) {
+        console.log(`${firstName} retires in ${retirementYears} years.`)
+        return retirementYears
+    } else {
+        console.log(`${firstName} has already retired.`);
+        return -1
+    }
+
+}
+
+console.log(yearsUntilRetirement("Tejas", 2005));
+console.log(yearsUntilRetirement("Jonas", 1200));
