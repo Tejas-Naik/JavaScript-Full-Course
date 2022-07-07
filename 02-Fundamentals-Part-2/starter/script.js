@@ -118,6 +118,7 @@ console.log(fruitProcessor(1, 1));
 
 */
 
+/*
 ///////////////////////////////
 // Reviewing FUNCTIONS
 ///////////////////////////////
@@ -140,3 +141,45 @@ const yearsUntilRetirement = function (firstName, birthYear) {
 
 console.log(yearsUntilRetirement("Tejas", 2005));
 console.log(yearsUntilRetirement("Jonas", 1200));
+*/
+
+///////////////////////////////
+// INTRO TO ARRAYS
+///////////////////////////////
+const friend1 = "Michael";
+const friend2 = "Steven";
+const friend3 = "Peter";
+
+const friends = ["Micheal", "Steven", "Peter"];
+console.log(friends);
+
+const birthYears = new Array(1991, 2005, 2007, 2020, 2022);
+
+console.log(friends[0]);
+console.log(friends[2]);
+
+console.log(friends[friends.length - 1])
+
+friends[2] = "Angela";
+// friends = ["Alice", "Bob"];
+console.log(friends);
+
+const firstName = "Tejas";
+const tejas = [firstName, "Naik", 2022 - 2005, "Programmer", friends]
+
+console.log(tejas);
+
+
+// Exercise
+const calcAge = birthYear => 2022 - birthYear;
+const years = [1991, 2003, 2005, 2010, 2019];
+const ages = [
+    calcAge(years[0]),
+    calcAge(years[1]),
+    calcAge(years[2]),
+    calcAge(years[3]),
+    calcAge(years[4]),
+]
+
+console.log(ages);
+
