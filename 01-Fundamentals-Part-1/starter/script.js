@@ -423,3 +423,4 @@ console.log(drink2)
 
 // Using in template literals
 console.log(`I like to drink ${age >= 18 ? "Wine" : "Water"}`);
+
