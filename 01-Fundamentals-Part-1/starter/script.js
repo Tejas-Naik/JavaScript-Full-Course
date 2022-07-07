@@ -226,7 +226,7 @@ console.log(century);
 
 /*
 ///////////////////////////////////
-// TYPE CONVERSION / COERcION
+// TYPE CONVERSION / COERCION
 ///////////////////////////////////
 // type conversion = manually chance the data type, 
 
@@ -360,6 +360,7 @@ if (hasDriversLicence && hasGoodVision && !isTired) {
 
 */
 
+/*
 ///////////////////////////////////
 // Switch Statement...
 ///////////////////////////////////
@@ -390,3 +391,35 @@ switch(day) {
 }
 
 // Use switch if you want to avoid some repetative stuff in if/else statements
+*/
+///////////////////////////////////
+// STATEMENT vs EXPRESSION
+///////////////////////////////////
+// expression is something that produces value
+// any operation (+, -, *, /)
+
+// statement is something that helps expressions to produce value
+// If/Else statement, switch statement
+
+///////////////////////////////////
+// Conditional operator(TERNERY)
+///////////////////////////////////
+
+const age = 23;
+// age >= 18 ? console.log("I like to drink wine...") : console.log("I like to drink Water...");
+
+// Ternery
+const drink = age >= 18 ? 'Wine' : 'Water';
+console.log(drink)
+
+// If/Else
+let drink2
+if (age >= 18) {
+    drink2 = "Wine";
+} else {
+    drink2 = "water";
+}
+console.log(drink2)
+
+// Using in template literals
+console.log(`I like to drink ${age >= 18 ? "Wine" : "Water"}`);
