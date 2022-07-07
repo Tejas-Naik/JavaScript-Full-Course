@@ -143,6 +143,8 @@ console.log(yearsUntilRetirement("Tejas", 2005));
 console.log(yearsUntilRetirement("Jonas", 1200));
 */
 
+/*
+
 ///////////////////////////////
 // INTRO TO ARRAYS
 ///////////////////////////////
@@ -182,4 +184,43 @@ const ages = [
 ]
 
 console.log(ages);
+
+*/
+
+///////////////////////////////
+// ARRAY METHODS.
+///////////////////////////////
+// push(), unshift(), shift(), pop(), indexOf(), includes();
+
+const friends = ["Michael", "Steven", "Peter"];
+
+// ADD
+// Adding elements ot the end of the array
+const newLength = friends.push("Jay");      // returns new length
+console.log(friends, newLength);
+
+// adds element to the first of the array
+friends.unshift("Alice");                   // returns new length
+console.log(friends)
+
+
+// REMOVE
+const removed = friends.pop()   // removes last and returns.
+console.log(friends, removed);
+
+friends.shift()                // removes first element.
+console.log(friends)
+
+// IndexOf
+console.log(friends.indexOf("Steven"));
+console.log(friends.indexOf("Hiii"));
+
+
+// includes (strict)
+console.log(friends.includes("Steven"));
+console.log(friends.includes("Hiii"));
+
+if (friends.includes("Peter")) {
+    console.log("You have a friend called Peter");
+}
 
