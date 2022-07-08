@@ -228,6 +228,8 @@ if (friends.includes("Peter")) {
 
 */
 
+/*
+
 ///////////////////////////////
 // OBJECTS.
 ///////////////////////////////
@@ -253,4 +255,43 @@ const tejasObject = {
 
 console.log(tejasObject);
 
+*/
+
+const tejasObject = {
+    firstName: "Tejas",
+    lastName: "Naik",
+    age: 2022 - 2005,
+    job: 'Programmer',
+    friends: ["Peter", "Steve", "Michael"],
+};
+console.log(tejasObject);
+
+// Dot Notation
+console.log(tejasObject.lastName);
+
+// Bracket notation
+// we can put expression in the bracket notation
+console.log(tejasObject['lastName']);
+
+const nameKey = "Name";
+console.log(tejasObject["first" + nameKey]);
+console.log(tejasObject["last" + nameKey]);
+
+// console.log(tejasObject.'last' + Name);
+
+
+// const userInput = prompt("What do you wanna know about Tejas? select from options below: (firstName, lastName, age, job, friends.)");
+const interestedIn = "location"
+if (tejasObject[interestedIn] === undefined) {
+    console.log(`Sorry ${interestedIn} is not an option.`)
+} else console.log(tejasObject[interestedIn]);
+
+// Adding new properties to the object
+tejasObject.location = "Remote";
+tejasObject['twitter'] = "@rn_tejas";
+console.log(tejasObject);
+
+// Challenge
+// Tejas has 3 friends and his best friend is "Steve";
+console.log(`${tejasObject.firstName} has ${tejasObject.friends.length} friends and his best friend is ${tejasObject.friends[1]}`);
 
