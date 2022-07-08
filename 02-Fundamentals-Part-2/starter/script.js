@@ -336,6 +336,8 @@ console.log(tejas.getSummary());
 
 */
 
+/*
+
 ///////////////////////////////
 // Iteration: THE FOR LOOP
 ///////////////////////////////
@@ -405,5 +407,24 @@ console.log("-----BREAK AFTER NUMBER -----")
 for (let i = 0; i < tejas.length; i++) {
     if (typeof tejas[i] === 'number') break;
     else console.log(tejas[i]);
+}
+
+*/
+
+///////////////////////////////
+// Looping backwards & nested loops
+///////////////////////////////
+const tejas = [
+    "Tejas",
+    "Naik",
+    2022 - 2005,
+    "Programmer",
+    ["Peter", "Jonas", "Angela"],
+    true,
+];
+
+// Backwards looping...
+for (let i = tejas.length - 1; i >= 0; i--) {
+    console.log(tejas[i]);
 }
 
