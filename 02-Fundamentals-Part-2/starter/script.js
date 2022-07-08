@@ -297,6 +297,12 @@ console.log(`${tejasObject.firstName} has ${tejasObject.friends.length} friends 
 
 */
 
+/*
+
+///////////////////////////////
+// OBJECTS.
+///////////////////////////////
+
 const tejas = {
     firstName: "Tejas",
     lastName: "Naik",
@@ -326,4 +332,7 @@ console.log(tejas.calcAge());
 console.log(tejas.age);
 // console.log(tejas['calcAge'](2005));
 
-console.log(tejas.getSummary())
+console.log(tejas.getSummary());
+
+*/
+
