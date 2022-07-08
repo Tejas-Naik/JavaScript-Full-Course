@@ -437,3 +437,24 @@ for (let i = 0; i < exercises.length; i++) {
         console.log(`${exercises[i]} repetition: ${rep} `);
     }
 }
+
+
+// While Loop
+
+// for (let i = 1; i <=10; i++) {
+//     console.log(`Lifting Weight repetition : ${i}`);
+// }
+
+let rep = 1;
+while (rep <= 10) {
+    console.log(`Lifting Weight repetition : ${rep}`);
+    rep++
+}
+
+// Roll dice until we roll 6
+let dice;
+
+while (dice !== 6) {
+    dice = Math.trunc(Math.random() * 6) + 1;
+    console.log(`You rolled ${dice}`)
+}
