@@ -354,3 +354,38 @@ console.log(tejas.getSummary());
 for (let rep = 1; rep < 11; rep++) {
     console.log(`Lifting weight repetition ${rep} 🏋️‍♂️`);
 }
+
+// Looping Arrays
+const tejas = [
+    "Tejas",
+    "Naik",
+    2022 - 2005,
+    "Programmer",
+    ["Peter", "Jonas", "Angela"],
+    true
+];
+const tejasTypes = [];
+
+// tejas[0]
+// tejas[1]
+// ...
+// tejas[4]
+// tejas[5] deosnt exist.
+
+
+for (let i = 0; i < tejas.length; i++) {
+    console.log(tejas[i], typeof tejas[i]);
+    // tejasTypes[i] = typeof tejas[i];
+    tejasTypes.push(typeof tejas[i]);
+}
+
+console.log(tejasTypes);
+
+const birthYears = [1991, 2000, 2005, 2008, 2014];
+const ages = []
+
+for (let i = 0; i < birthYears.length; i++) {
+    ages.push(2022 - birthYears[i])
+}
+
+console.log(ages);
