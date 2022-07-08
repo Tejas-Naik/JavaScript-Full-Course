@@ -230,6 +230,8 @@ if (friends.includes("Peter")) {
 
 /*
 
+/*
+
 ///////////////////////////////
 // OBJECTS.
 ///////////////////////////////
@@ -254,8 +256,6 @@ const tejasObject = {
 };
 
 console.log(tejasObject);
-
-*/
 
 const tejasObject = {
     firstName: "Tejas",
@@ -295,3 +295,35 @@ console.log(tejasObject);
 // Tejas has 3 friends and his best friend is "Steve";
 console.log(`${tejasObject.firstName} has ${tejasObject.friends.length} friends and his best friend is ${tejasObject.friends[1]}`);
 
+*/
+
+const tejas = {
+    firstName: "Tejas",
+    lastName: "Naik",
+    birthYear: 2005,
+    job: "Programmer",
+    friends: ["Michael", "Peter", "Steve"],
+    hasDriversLicence: true,
+
+    // calcAge : function(birthYear) {
+    //     return 2022 - birthYear;
+    // }
+
+    // calcAge : function () {
+    //     return 2022 - this.birthYear;
+    // }
+
+    calcAge: function () {
+        return this.age = 2022 - this.birthYear;
+    },
+
+    getSummary : function() {
+        return `${this.firstName} is a ${this.calcAge()}-year old ${this.job}, and has ${this.hasDriversLicence ? "a" : "no"} drivers licence`;
+    }
+};
+
+console.log(tejas.calcAge());
+console.log(tejas.age);
+// console.log(tejas['calcAge'](2005));
+
+console.log(tejas.getSummary())
