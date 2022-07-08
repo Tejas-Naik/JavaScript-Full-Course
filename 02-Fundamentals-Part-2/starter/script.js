@@ -428,3 +428,12 @@ for (let i = tejas.length - 1; i >= 0; i--) {
     console.log(tejas[i]);
 }
 
+// Nested for loop
+const exercises = ["Push ups", "Squats", "Jumping Jacks"];
+
+for (let i = 0; i < exercises.length; i++) {
+    console.log(`---------- starting exercise ${i + 1}`)
+    for (let rep = 1; rep < 6; rep++) {
+        console.log(`${exercises[i]} repetition: ${rep} `);
+    }
+}
