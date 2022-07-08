@@ -227,3 +227,30 @@ if (friends.includes("Peter")) {
 }
 
 */
+
+///////////////////////////////
+// OBJECTS.
+///////////////////////////////
+// Array
+const tejasArray = [
+    "Tejas",
+    "Naik",
+    2022 - 2005,
+    "Programmer",
+    ["Peter", "Jonas", "Angela"]
+];
+console.log(tejasArray);
+
+// Object
+// Order doesnt matter
+const tejasObject = {
+    firstName: "Tejas",
+    lastName: "Naik",
+    age: 2022 - 2005,
+    job: 'Programmer',
+    friends: ["Peter", "Steve", "Michael"],
+};
+
+console.log(tejasObject);
+
+
