@@ -389,3 +389,21 @@ for (let i = 0; i < birthYears.length; i++) {
 }
 
 console.log(ages);
+
+
+// continue and break
+// CONTINUE WILL ELIMINATE THE CURRENT ITERATION AND STARTS OVER
+console.log("-----ONLY STRINGS -----")
+for (let i = 0; i < tejasTypes.length; i++) {
+    // printing object only if type is string
+    if (typeof tejas[i] !== 'string') continue;
+    else console.log(tejas[i], typeof tejas[i]);
+}
+
+// BREAK WILL ELIMINATE THE WHOLE LOOP
+console.log("-----BREAK AFTER NUMBER -----")
+for (let i = 0; i < tejas.length; i++) {
+    if (typeof tejas[i] === 'number') break;
+    else console.log(tejas[i]);
+}
+
