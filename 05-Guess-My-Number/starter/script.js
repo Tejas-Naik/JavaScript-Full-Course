@@ -16,13 +16,14 @@ document.querySelector('.guess').value = 23;
 console.log(document.querySelector('.guess').value);
 */
 
-const secretNumber = Math.trunc(Math.random() * 20) + 1;
+let secretNumber = Math.trunc(Math.random() * 20) + 1;
 const messageEl = document.querySelector('.message');
 const scoreEl = document.querySelector('.score');
+const againEl = document.querySelector('.again');
 
 let score = 20;
 
-document.querySelector('.number').textContent = secretNumber;
+
 
 // Reacting to the click events
 document.querySelector('.check').addEventListener('click',
@@ -41,6 +42,7 @@ document.querySelector('.check').addEventListener('click',
             // changing styles of an element
             document.querySelector('body').style.backgroundColor = "#60b347";
             document.querySelector('.number').style.width = "30rem"
+            document.querySelector('.number').textContent = secretNumber;
         }
         // When player guesses higher
         else if (guess > secretNumber) {
@@ -66,3 +68,13 @@ document.querySelector('.check').addEventListener('click',
         }
     }
 );
+
+againEl.addEventListener('click', function () {
+    score = 20;
+    secretNumber = Math.trunc(Math.random() * 20) + 1;
+    document.body.style.backgroundColor = "#222222";
+    document.querySelector('.number').style.width = "15rem";
+    document.querySelector('.number').textContent = "?";
+    scoreEl.textContent = 20;
+    messageEl.textContent = "Start Guessing...";
+})
