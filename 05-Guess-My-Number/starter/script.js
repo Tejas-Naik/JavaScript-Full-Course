@@ -26,7 +26,9 @@ const highscoreEl = document.querySelector('.highscore');
 let score = 20;
 let highscore = 0;
 
-
+const displayMessage = function (message) {
+    messageEl.textContent = message;
+}
 
 // Reacting to the click events
 document.querySelector('.check').addEventListener('click',
@@ -37,7 +39,7 @@ document.querySelector('.check').addEventListener('click',
 
         // No Input
         if (!guess) {
-            messageEl.textContent = '⛔ NO Number!'
+            displayMessage('⛔ NO Number!')
         }
         // When player wins
         else if (guess === secretNumber) {
@@ -47,10 +49,6 @@ document.querySelector('.check').addEventListener('click',
             document.querySelector('.number').style.width = "30rem"
             document.querySelector('.number').textContent = secretNumber;
 
-            // highscore = score;
-            // if (highscore > highscoreEl.textContent) {
-            //     highscoreEl.textContent = highscore;
-            // }
             if (score > highscore) {
                 highscore = score;
                 highscoreEl.textContent = highscore;
@@ -58,13 +56,14 @@ document.querySelector('.check').addEventListener('click',
         }
         // When guess is incorrect
         else if (guess !== secretNumber) {
-            secretNumber < guess ? messageEl.textContent = "🔻Guess Lower" : messageEl.textContent = "🔼 Guess Higher";
+            displayMessage(secretNumber < guess ? "🔻Guess Lower" : "🔼 Guess Higher")
             if (score > 1) {
                 score--
                 scoreEl.textContent = score;
             } else {
                 scoreEl.textContent = 0;
-                messageEl.textContent = '💥 You lost the game'
+                displayMessage('💥 You lost the game')
+                document.body.style.backgroundColor = '#f93919';
             }
         }
     }
@@ -78,5 +77,5 @@ againEl.addEventListener('click', function () {
     document.querySelector('.number').textContent = "?";
     document.querySelector('.guess').value = "";
     scoreEl.textContent = 20;
-    messageEl.textContent = "Start Guessing...";
+    displayMessage("Start guessing...");
 })
