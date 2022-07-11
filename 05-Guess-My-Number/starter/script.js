@@ -56,21 +56,10 @@ document.querySelector('.check').addEventListener('click',
                 highscoreEl.textContent = highscore;
             }
         }
-        // When player guesses higher
-        else if (guess > secretNumber) {
+        // When guess is incorrect
+        else if (guess !== secretNumber) {
+            secretNumber < guess ? messageEl.textContent = "🔻Guess Lower" : messageEl.textContent = "🔼 Guess Higher";
             if (score > 1) {
-                messageEl.textContent = "🔻Guess Lower";
-                score--
-                scoreEl.textContent = score;
-            } else {
-                scoreEl.textContent = 0;
-                messageEl.textContent = '💥 You lost the game'
-            }
-        }
-        // When player guessed lower
-        else if (guess < secretNumber) {
-            if (score > 1) {
-                messageEl.textContent = "🔼 Guess Higher";
                 score--
                 scoreEl.textContent = score;
             } else {
