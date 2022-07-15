@@ -83,9 +83,10 @@ const addExpr = function (a, b) {
 var addArr = (a, b) => a + b;
 
 /*
-- We can only use function declarations before init
-- var/let/const can be called before init
-*/
+
+//- We can only use function declarations before init
+//- var/let/const can be called before init
+
 
 // Example
 // Don't do this because variables with var are undefined
@@ -105,3 +106,50 @@ const z = 3;
 console.log(x === window.x);
 console.log(y === window.y);
 console.log(z === window.z);
+
+*/
+
+// the THIS keyword
+// This variable is a special variable that is created for every execution context
+// This variable is created for every function/obj
+// this refers to the current object (current executing)
+
+// THE VALUE OF THIS IS NOT ACTUALLY STATIC (changes on how the function is called)
+// Arrow functions doesnt have the `this` keyword
+
+// this keyword in practice
+console.log(this);      // window() obj
+
+// regular function
+const calcAge = function (birthYear) {
+    console.log(2022 - birthYear);
+    console.log(this);      // undefined
+}
+calcAge(2005);
+
+// Arrow Function
+const calcAgeArr = (birthYear) => {
+    console.log(2032 - birthYear);
+    console.log(this);      // window (from the global scope)
+}
+
+calcAgeArr(2005);
+
+// Objects
+const tejas = {
+    year: 2005,
+    calcAge: function () {
+        console.log(this) // object <tejas>
+    }
+}
+tejas.calcAge();
+
+const jonas = {
+    year: 1991,
+}
+
+// method borrowing
+jonas.calcAge = tejas.calcAge;
+
+console.log(tejas);
+console.log(jonas);
