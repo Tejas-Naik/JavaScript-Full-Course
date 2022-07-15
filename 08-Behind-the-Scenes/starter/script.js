@@ -204,6 +204,8 @@ const addArrow = (a, b) => {
 addArrow()
 */
 
+
+
 // Primitives vs.Objects
 // Primitives
 let age = 16;
@@ -227,3 +229,43 @@ console.log("Friend: ", friend);
 //  https://www.udemy.com/course/the-complete-javascript-course/learn/lecture/22648509#questions
 
 
+// Primitives
+let lastName = "Williams";
+let oldLastName = lastName;
+lastName = "Davis"
+
+console.log(oldLastName);
+console.log(lastName);
+
+// Objects
+const jessica = {
+    firstName: "Jessica",
+    lastName: "Williams",
+    age: 27,
+};
+
+const marriedJessica = jessica; // points to the same point  in heap
+
+marriedJessica.lastName = "Davis";
+console.log(jessica);
+console.log(marriedJessica);
+
+// marriedJessica = {}; // cannot change const
+
+// Copying Objects
+const jessica2 = {
+    firstName: "Jessica",
+    lastName: "Williams",
+    age: 27,
+    family: ["Alice", "Bob"],
+};
+
+// we can copy an object by Object.assign variable
+const jessicaNew = Object.assign({}, jessica2);
+jessicaNew.lastName = "Davis";
+
+jessicaNew.family.push("Mary");
+jessicaNew.family.push("John");
+
+console.log(jessica2);
+console.log(jessicaNew);
