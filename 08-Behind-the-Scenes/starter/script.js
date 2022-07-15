@@ -109,6 +109,7 @@ console.log(z === window.z);
 
 */
 
+/*
 // the THIS keyword
 // This variable is a special variable that is created for every execution context
 // This variable is created for every function/obj
@@ -153,3 +154,50 @@ jonas.calcAge = tejas.calcAge;
 
 console.log(tejas);
 console.log(jonas);
+*/
+
+// Arrow Functions vs Regular Functions
+// var firstName = "ERROR!! "
+
+const tejas = {
+    firstName: "Tejas",
+    year: 2005,
+    calcAge: function () {
+        console.log(this);  // tejas object
+        console.log(2022 - this.year);
+
+        // SOLUTION 1
+        // const self = this;      // this = obj now
+        // // This is a regular call so this = undefined
+        // const isMillenial = function () {
+        //     // console.log(this.year >= 1981 && this.year <= 1991);
+        //     console.log(self.year >= 1981 && self.year <= 1991);
+        // };
+
+        // SOLUTION 2
+        // arrow function because `this` refers to the sorrounding obj
+        const isMillenial = () => {
+            console.log(this);
+            console.log(this.year >= 1981 && this.year <= 1991);
+        }
+        isMillenial();
+    },
+    greet: () => console.log(`Hey ${this.firstName}`)
+};
+
+tejas.greet();      // undefined because arrow
+tejas.calcAge();
+
+// Arguements keyword
+const addExpre = function (a, b) {
+    console.log(arguments)
+    return a + b
+}
+addExpre(1, 2)
+addExpre(1, 2, 3, 4, 5, 6)
+
+const addArrow = (a, b) => {
+    // console.log(arguements);
+    return a + b
+};
+addArrow()
