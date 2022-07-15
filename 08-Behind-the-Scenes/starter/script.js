@@ -56,7 +56,7 @@ calcAge(1986);
     
     Let and Const variables are TDZ(Temporal Dead Zone)
 */
-
+/*
 // Hoistins and TDZ
 
 // Variables
@@ -81,7 +81,7 @@ const addExpr = function (a, b) {
 }
 
 var addArr = (a, b) => a + b;
-
+*/
 /*
 
 //- We can only use function declarations before init
@@ -159,6 +159,7 @@ console.log(jonas);
 // Arrow Functions vs Regular Functions
 // var firstName = "ERROR!! "
 
+/*
 const tejas = {
     firstName: "Tejas",
     year: 2005,
@@ -201,3 +202,28 @@ const addArrow = (a, b) => {
     return a + b
 };
 addArrow()
+*/
+
+// Primitives vs.Objects
+// Primitives
+let age = 16;
+let oldAge = age;
+age = 17;
+
+console.log(age);
+console.log(oldAge);
+
+const me = {
+    firstName: "Tejas",
+    age: 17,
+};
+
+const friend = me;
+friend.age = 25;
+console.log("Me: ", me);
+console.log("Friend: ", friend);
+
+// Watch Lecture 99
+//  https://www.udemy.com/course/the-complete-javascript-course/learn/lecture/22648509#questions
+
+
