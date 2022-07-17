@@ -26,4 +26,57 @@ const restaurant = {
       close: 24,
     },
   },
+
+  order: function (starterIndex, mainIndex) {
+    return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]]
+  },
 };
+
+// Destructuring arrays
+// Destructuring means storing a value from array inside variable
+const arr = [1, 2, 3];
+const a = arr[0];
+const b = arr[1];
+const c = arr[2];
+console.log(a, b, c);
+
+const [x, y, z] = [2, 3, 4];
+console.log(x, y, z);
+
+// Getting the first two categories from the array
+// 1. we dont need to extract everything
+const [first, second] = restaurant.categories   // length=3
+const [first1, , third] = restaurant.categories
+console.log(first, second);
+console.log(first1, third);
+
+// 2. swapping variables
+let [main, , secondary] = restaurant.categories;
+
+// const temp = main;
+// main = secondary;
+// secondary = temp;
+// console.log("Main:", main, "Secondary:", secondary);
+
+// with arrays
+[main, secondary] = [secondary, main];
+console.log(main, secondary);
+
+// RECIEVE 2 RETURN VALUES FROM A FUNCTION
+// console.log(restaurant.order(2, 0));
+let [starterMeal, mainMeal] = restaurant.order(2, 0)
+console.log(starterMeal, mainMeal);
+
+
+// Nested array destructuring
+const nested = [1, 2, 3, [10, 9]];
+// const [one, two, , list] = nested;
+// console.log(one, two, list);
+
+const [one, two, , [ten, nine]] = nested
+console.log(one, two, ten, nine);
+
+// Default values
+const [p, q, r = 0] = [8, 9];   // the r value gets default of 0
+console.log(p, q, r)
+
