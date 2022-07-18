@@ -30,8 +30,52 @@ const restaurant = {
   order: function (starterIndex, mainIndex) {
     return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]]
   },
+
+  orderDelivery: function ({ starterIndex = 1, mainIndex = 0, time = "20:00", address = "..." }) {
+    console.log(`Recieved Order! ${this.starterMenu[starterIndex]} & ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}.`);
+  }
 };
 
+// Destructing Objects
+// Order doesnt matter in objects
+// const { name, openingHours, categories } = restaurant;
+// console.log(name, openingHours, categories);
+// giving default values.
+const {
+  name: restaurantName,
+  openingHours: hours,
+  categories: tags,
+} = restaurant;
+console.log(restaurantName, hours, tags);
+
+// Deefault values
+const { main = [], starterMenu: starters = [] } = restaurant;
+console.log(main, starters);
+
+// Mutating variables
+let a = 111;
+let b = 999;
+const obj = { a: 23, b: 7, c: 14 };
+console.log(a, b);
+
+({ a, b } = obj);
+console.log(a, b);
+
+// Nested Objects
+// To get objects from nested objects we use :{}
+const { fri: { open, close } } = (hours);
+
+console.log(open, close);
+
+// Destructuring objects in the function parameter
+restaurant.orderDelivery({
+  starterIndex: 2,
+  mainIndex: 2,
+  time: "22:30",
+  address: "Examba, Main street - 591244"
+})
+
+/*
 // Destructuring arrays
 // Destructuring means storing a value from array inside variable
 const arr = [1, 2, 3];
@@ -79,4 +123,6 @@ console.log(one, two, ten, nine);
 // Default values
 const [p, q, r = 0] = [8, 9];   // the r value gets default of 0
 console.log(p, q, r)
+*/
+
 
