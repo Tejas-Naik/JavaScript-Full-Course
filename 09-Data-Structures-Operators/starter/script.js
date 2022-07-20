@@ -37,6 +37,11 @@ const restaurant = {
 
   orderPasta: function (ing1, ing2, ing3) {
     console.log(`Here's your delicious pasta with ${ing1}, ${ing2} and ${ing3}`)
+  },
+
+  orderPizza: function (mainIngredient, ...otherIngredients) {
+    console.log(mainIngredient);
+    console.log(otherIngredients);
   }
 };
 
@@ -193,7 +198,7 @@ console.log(restaurant.name, restaurantCopy.name);
 // Rest Pattern and Parameters
 ////////////////////////////////
 
-// Destructuring
+// 1) Destructuring
 
 // spread operator bcz, after =
 const arr = [1, 2, ...[3, 4]];
@@ -210,3 +215,26 @@ console.log(pizza, risotto, otherFoods);
 // creating an object for open and closing times for weekdays (thurs, fri) and separate for sat
 const { sat, ...weekdays } = restaurant.openingHours
 console.log(sat, weekdays)
+
+// 2) Functions
+// With the rest parameters we can pass any number of values into functions
+const add = function (...numbers) {
+  let sum = 0;
+  for (let i = 0; i < numbers.length; i++) {
+    sum += numbers[i];
+  }
+  console.log(sum);
+}
+
+add(1, 2);
+add(1, 2, 4);
+add(5, 2, 8, 6, 12);
+add(5, 2, 8, 6, 12, 45);
+
+const x = [45, 67, 4];
+add(...x)
+
+// Using in restaurant obj
+restaurant.orderPizza("Mushrooms", "Onion", "Olives", "Spinach");
+restaurant.orderPizza("Mushrooms");
+
