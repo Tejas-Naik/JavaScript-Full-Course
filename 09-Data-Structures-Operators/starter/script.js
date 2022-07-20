@@ -297,6 +297,8 @@ console.log(guestsCorrect);
 
 */
 
+/*
+
 ////////////////////////////////
 // Logical assignemnet operator
 ////////////////////////////////
@@ -339,3 +341,20 @@ rest2.owner &&= "Anonymous";
 
 console.log(rest1.owner);
 console.log(rest2.owner);
+*/
+
+/////////////////////////////////////
+// Looping arrays : FOR-OF Loop
+/////////////////////////////////////
+const menu = [...restaurant.mainMenu, ...restaurant.starterMenu];
+
+for (const item of menu) {
+  console.log(item);
+};
+
+// To get indexes
+for (const [index, item] of menu.entries()) {
+  // console.log(item);
+  // console.log(`${item[0] + 1} : ${item[1]}`);
+  console.log(`${index + 1} : ${item}`);
+}
