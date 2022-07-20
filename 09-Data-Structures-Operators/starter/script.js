@@ -33,9 +33,14 @@ const restaurant = {
 
   orderDelivery: function ({ starterIndex = 1, mainIndex = 0, time = "20:00", address = "..." }) {
     console.log(`Recieved Order! ${this.starterMenu[starterIndex]} & ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}.`);
+  },
+
+  orderPasta: function (ing1, ing2, ing3) {
+    console.log(`Here's your delicious pasta with ${ing1}, ${ing2} and ${ing3}`)
   }
 };
 
+/*
 // Destructing Objects
 // Order doesnt matter in objects
 // const { name, openingHours, categories } = restaurant;
@@ -74,6 +79,7 @@ restaurant.orderDelivery({
   time: "22:30",
   address: "Examba, Main street - 591244"
 })
+*/
 
 /*
 // Destructuring arrays
@@ -125,4 +131,58 @@ const [p, q, r = 0] = [8, 9];   // the r value gets default of 0
 console.log(p, q, r)
 */
 
+/////////////////////////////
+// SPREAD OPERATOR
+/////////////////////////////
+// We can use spread operator to spread its all elements
+const arr = [7, 8, 9];
+const badNewArray = [1, 2, arr[0], arr[1], arr[2]];
+console.log(badNewArray);
 
+// spread operator
+const goodNewArray = [1, 2, ...arr]
+console.log(goodNewArray);
+console.log(...goodNewArray);
+
+const newMenu = [...restaurant.mainMenu, "Gnocci"];
+console.log(newMenu)
+
+// two usecases of Spread Operator:
+
+// 1. Copy Array
+const mainMenuCopy = [...restaurant.mainMenu]
+
+const orArray = ["a", "b", "c"];
+const copyArray = [...orArray];
+copyArray.push("Test");
+console.log(orArray, copyArray)
+
+// 2. Add 2 arrays together
+const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+const arr1 = [1, 2, 3, 4];
+const arr2 = [5, 6, 7, 8];
+const arrCombined = [...arr1, ...arr2];
+console.log(arrCombined);
+
+// Spread operators work on any iterables
+// Iterables : Arrays, Strings, Maps, Sets.
+// console.log(..."Tejas");
+// Only works when creating new arrays or passing arguements in function
+const str = "Tejas";
+const letters = [...str, " ", "Naik"];
+console.log(letters);
+console.log(...str);
+const pastaIngredients = ["Flour", "Salt", "Eggs"]
+restaurant.orderPasta(...pastaIngredients);
+// doest work with template literals
+// console.log(`${...str}`)
+
+// Objects
+const newRestaurant = { ...restaurant, founder: "Anonymous :|" }
+console.log(newRestaurant);
+
+// Copying objects
+const restaurantCopy = { ...restaurant };
+restaurantCopy.name = "Restoranto Roma"
+
+console.log(restaurant.name, restaurantCopy.name);
