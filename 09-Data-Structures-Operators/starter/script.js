@@ -281,6 +281,8 @@ restaurant.orderPizza && restaurant.orderPizza("Mushroom", "Onion", "Spinach");
 OR Operator : set default values
 AND Operator: Check of something exists or not
 */
+
+/*
 ///////////////////////////////////////
 // The Nullish Coalescing Operator (??)
 ///////////////////////////////////////
@@ -293,5 +295,47 @@ console.log(guests)
 const guestsCorrect = restaurant.numGuests ?? 10;
 console.log(guestsCorrect);
 
+*/
 
+////////////////////////////////
+// Logical assignemnet operator
+////////////////////////////////
+const rest1 = {
+  name: "Capri",
+  // numGuests: 20,
+  numGuests: 0,
+}
 
+const rest2 = {
+  name: "La Piazza",
+  owner: "Giovanna Rossi"
+}
+
+// rest1.numGuests = rest1.numGuests || 10;
+// rest2.numGuests = rest2.numGuests || 10;
+
+// ||= doesnt work with 0
+rest1.numGuests ||= 10;
+rest2.numGuests ||= 10;
+
+console.log("OR", rest1.numGuests);
+console.log("OR", rest2.numGuests);
+
+// ??=
+// rest1.numGuests = rest1.numGuests ?? 10;
+// rest2.numGuests = rest2.numGuests ?? 10;
+rest1.numGuests ??= 10;
+rest2.numGuests ??= 10;
+
+console.log("Nullish ??", rest1.numGuests);
+console.log("Nullish ??", rest2.numGuests);
+
+// &&=
+// rest1.owner = rest1.owner && "Anonymous";
+// rest2.owner = rest2.owner && "Anonymous";
+
+rest1.owner &&= "Anonymous";
+rest2.owner &&= "Anonymous";
+
+console.log(rest1.owner);
+console.log(rest2.owner);
