@@ -259,3 +259,19 @@ console.log(guests1);
 const guests2 = restaurant.numGuests || 10;
 
 console.log(guests2);
+
+
+// AND
+// the and operator ends the iteration when there is a falsy value
+console.log("-----------AND------------");
+console.log(0 && "Tejas");
+console.log(7 && "Tejas");
+
+console.log("Hello" && 7 && null && [1] && { a: 12 });
+
+// Practical Example
+if (restaurant.orderPizza) {
+  restaurant.orderPizza("Mushroom", "Onion", "Spinach");
+}
+
+restaurant.orderPizza && restaurant.orderPizza("Mushroom", "Onion", "Spinach");
