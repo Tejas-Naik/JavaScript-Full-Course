@@ -131,6 +131,7 @@ const [p, q, r = 0] = [8, 9];   // the r value gets default of 0
 console.log(p, q, r)
 */
 
+/*
 /////////////////////////////
 // SPREAD OPERATOR
 /////////////////////////////
@@ -186,3 +187,26 @@ const restaurantCopy = { ...restaurant };
 restaurantCopy.name = "Restoranto Roma"
 
 console.log(restaurant.name, restaurantCopy.name);
+*/
+
+////////////////////////////////
+// Rest Pattern and Parameters
+////////////////////////////////
+
+// Destructuring
+
+// spread operator bcz, after =
+const arr = [1, 2, ...[3, 4]];
+
+// Rest pattern bcz, before =
+const [a, b, ...others] = [1, 2, 3, 4, 5]
+console.log(a, b, others)
+
+// Collecting pizza & risotto from the menu
+const [pizza, , risotto, ...otherFoods] = [...restaurant.mainMenu, ...restaurant.starterMenu]
+console.log(pizza, risotto, otherFoods);
+
+// Objects
+// creating an object for open and closing times for weekdays (thurs, fri) and separate for sat
+const { sat, ...weekdays } = restaurant.openingHours
+console.log(sat, weekdays)
