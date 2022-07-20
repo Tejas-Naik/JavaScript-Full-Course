@@ -241,6 +241,7 @@ restaurant.orderPizza("Mushrooms", "Onion", "Olives", "Spinach");
 restaurant.orderPizza("Mushrooms");
 */
 
+/*
 //////////////////////////////
 // SHORT CIRCUITING (&& ||)
 //////////////////////////////
@@ -275,3 +276,22 @@ if (restaurant.orderPizza) {
 }
 
 restaurant.orderPizza && restaurant.orderPizza("Mushroom", "Onion", "Spinach");
+
+/*
+OR Operator : set default values
+AND Operator: Check of something exists or not
+*/
+///////////////////////////////////////
+// The Nullish Coalescing Operator (??)
+///////////////////////////////////////
+
+restaurant.numGuests = 0;
+// OR
+const guests = restaurant.numGuests || 10;
+console.log(guests)
+// NULLISH : null, undefined
+const guestsCorrect = restaurant.numGuests ?? 10;
+console.log(guestsCorrect);
+
+
+
