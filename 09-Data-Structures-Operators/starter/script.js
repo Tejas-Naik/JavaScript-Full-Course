@@ -194,6 +194,8 @@ restaurantCopy.name = "Restoranto Roma"
 console.log(restaurant.name, restaurantCopy.name);
 */
 
+/*
+
 ////////////////////////////////
 // Rest Pattern and Parameters
 ////////////////////////////////
@@ -237,4 +239,23 @@ add(...x)
 // Using in restaurant obj
 restaurant.orderPizza("Mushrooms", "Onion", "Olives", "Spinach");
 restaurant.orderPizza("Mushrooms");
+*/
 
+//////////////////////////////
+// SHORT CIRCUITING (&& ||)
+//////////////////////////////
+console.log("-----------OR------------")
+console.log(7 || "Tejas");
+console.log("" || "Tejas");
+console.log(true || 0);
+console.log(undefined || null);
+console.log("" || 0 || undefined || "Hi." || null || false)
+
+// restaurant.numGuests = 87;
+const guests1 = restaurant.numGuests ? restaurant.numGuests : 10
+console.log(guests1);
+
+// With || short-circuiting
+const guests2 = restaurant.numGuests || 10;
+
+console.log(guests2);
