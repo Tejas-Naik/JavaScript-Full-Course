@@ -284,7 +284,7 @@ restaurant.orderPizza && restaurant.orderPizza("Mushroom", "Onion", "Spinach");
 
 /*
 OR Operator : set default values
-AND Operator: Check of something exists or not
+AND Operator: Check if something exists or not
 */
 
 /*
@@ -365,3 +365,42 @@ for (const [index, item] of menu.entries()) {
   console.log(`${index + 1} : ${item}`);
 }
 */
+
+////////////////////////
+// Optionsl Chaining
+////////////////////////
+
+// this doesn't exists
+// console.log(restaurant.openingHours.mon.open)
+
+if (restaurant.openingHours && restaurant.openingHours.mon) {
+  console.log(restaurant.openingHours.mon.open);
+}
+
+// Optional Chaining
+// Optional chaining returns undefined if a method doesnt exists
+console.log(restaurant.openingHours.mon?.open)
+console.log(restaurant.openingHours?.mon?.open) // if opening hours doesnt exist it will end there
+
+// Example
+// Arrays
+const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+
+for (const day of days) {
+  const open = restaurant.openingHours?.[day]?.open ?? "Closed";
+  console.log(`On ${day} we open at ${open}`);
+}
+
+// Methods
+console.log(restaurant.order?.(1, 0) ?? "Method doesn't exists");
+console.log(restaurant.orderBurger?.(1, 0) ?? "Method doesn't exists");
+
+// check Array is empty
+const users = [{
+  name: "Tejas",
+  email: "tejas@email.com",
+}]
+
+console.log(users[0]?.name);
+console.log(users[1]?.name ?? "User not found");
+
