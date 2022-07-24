@@ -365,7 +365,7 @@ for (const [index, item] of menu.entries()) {
   console.log(`${index + 1} : ${item}`);
 }
 */
-
+/*
 ////////////////////////
 // Optionsl Chaining
 ////////////////////////
@@ -403,4 +403,32 @@ const users = [{
 
 console.log(users[0]?.name);
 console.log(users[1]?.name ?? "User not found");
+*/
 
+////////////////////////////////////////
+// Looping Objects : Key, Value, Entry
+////////////////////////////////////////
+// Using For In Loop
+console.log("---------FOR-IN Loop ----------");
+for (const key in restaurant) {
+  console.log(
+    `restaurant.${key} = ${restaurant[key]}`
+  );
+}
+
+console.log("--------- KEYS ----------");
+for (const day of Object.keys(openingHours)) {
+  console.log(day);
+  console.log(openingHours[day]);
+}
+
+console.log("--------- VALUES ----------");
+for (const time of Object.values(openingHours)) {
+  console.log(time);
+}
+
+console.log("--------- KEY & VALUE ----------");
+
+for (const [day, { open, close }] of Object.entries(openingHours)) {
+  console.log(`On ${day} we open at ${open} and close at ${close}`)
+}
