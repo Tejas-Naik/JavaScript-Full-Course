@@ -478,3 +478,13 @@ console.log(orderSet);
 // clear the set
 orderSet.clear();
 
+// Example
+const staff = ["Waiter", "Chef", "Waiter", "Manager", "Chef"];
+console.log(staff);
+
+const staffPositions = new Set(staff);
+console.log(staffPositions);
+
+// converting a set into an array
+const staffArray = [...staffPositions];
+console.log(staffArray)
