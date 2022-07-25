@@ -404,7 +404,7 @@ const users = [{
 console.log(users[0]?.name);
 console.log(users[1]?.name ?? "User not found");
 */
-
+/*
 ////////////////////////////////////////
 // Looping Objects : Key, Value, Entry
 ////////////////////////////////////////
@@ -432,3 +432,49 @@ console.log("--------- KEY & VALUE ----------");
 for (const [day, { open, close }] of Object.entries(openingHours)) {
   console.log(`On ${day} we open at ${open} and close at ${close}`)
 }
+*/
+
+/////////////////////////////////
+// SETS 
+/////////////////////////////////
+// - Set is an array of no-duplicate values
+
+const orderSet = new Set([
+  "Pasta",
+  "Rice",
+  "Pizza",
+  "Pizza",
+  "Rice",
+  "Pasta",
+  "Rosotto"
+]);
+console.log(orderSet);
+
+// Sets are iterables
+for (const item of orderSet) {
+  console.log(item)
+}
+
+// Strings are also iterables
+console.log(new Set("Tejas"))
+console.log(new Set("A quick brown fox jumped over the lazy dog"));
+
+// Methods on sets
+// size
+console.log(orderSet.size)
+
+// check if it has some element
+console.log(orderSet.has("Rice"));
+console.log(orderSet.has("Bread"));
+
+// Add
+orderSet.add("Garlic Bread");
+console.log(orderSet);
+
+// Delete
+orderSet.delete("Rice");
+console.log(orderSet);
+
+// clear the set
+orderSet.clear();
+
