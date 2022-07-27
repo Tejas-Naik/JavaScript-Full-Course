@@ -433,9 +433,9 @@ for (const [day, { open, close }] of Object.entries(openingHours)) {
   console.log(`On ${day} we open at ${open} and close at ${close}`)
 }
 */
-
+/*
 /////////////////////////////////
-// SETS 
+// SETS
 /////////////////////////////////
 // - Set is an array of no-duplicate values
 
@@ -487,4 +487,72 @@ console.log(staffPositions);
 
 // converting a set into an array
 const staffArray = [...staffPositions];
-console.log(staffArray)
+console.log(staffArray);
+*/
+
+////////////////////////////
+// MAPS : Fundamentals
+////////////////////////////
+// we use maps to map valeus to keys
+// maps are objects that can store any type of value (Not just primitives)
+
+const restMap = new Map();
+// returns new map
+restMap.set("name", "Classico Italiano");
+restMap.set("owner", "RN Tejas");
+restMap.set(1, "Firentze, Italy");
+restMap.set(2, "Lisbon, Portugal");
+restMap.set("categories", ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'])
+  .set("open", 11)
+  .set("close", 23)
+  .set(true, "we are open")
+  .set(false, "we are closed")
+  ;
+
+console.log(restMap);
+console.log(restMap.get("name"));
+console.log(restMap.get(true));
+
+const time = 21;
+console.log(
+  restMap.get(
+    restMap.get("open") < time && time < restMap.get("close")
+  )
+);
+
+
+// Methods on MAPS:
+// .has()
+console.log(restMap.has('categories'));
+
+// .delete(<property>)
+console.log(restMap.delete('owner'));
+console.log(restMap);
+
+// .size
+console.log(restMap.size);
+
+// .clear()
+// restMap.clear()
+
+// Using arrays,objects as keys
+const testArray = [1, 2]
+restMap.set(testArray, "Test");
+
+const testObject = { a: 1, b: 2 };
+restMap.set(testObject, "Test OBJECT...")
+
+console.log(restMap.get(testArray));
+console.log(restMap.get(testObject));
+
+console.log(restMap);
+
+// DOM as KEYS
+restMap.set(document.querySelector('h1'), "Heading")
+console.log(restMap);
+
+// returns arrays of key,values
+// for (const [key, value] of restMap) {
+//   console.log(`${key} : ${value}`);
+//}
+
