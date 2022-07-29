@@ -556,7 +556,7 @@ console.log(restMap);
 //   console.log(`${key} : ${value}`);
 //}
 */
-
+/*
 // MAPS ITERTATION / LOOPING
 const question = new Map([
   ["question", "Whats the best programming language in the world?"],
@@ -600,3 +600,5 @@ console.log(question.keys());
 console.log([...question.keys()]);
 console.log(question.values());
 console.log([...question.values()]); 
+*/
+
