@@ -489,7 +489,7 @@ console.log(staffPositions);
 const staffArray = [...staffPositions];
 console.log(staffArray);
 */
-
+/*
 ////////////////////////////
 // MAPS : Fundamentals
 ////////////////////////////
@@ -555,4 +555,48 @@ console.log(restMap);
 // for (const [key, value] of restMap) {
 //   console.log(`${key} : ${value}`);
 //}
+*/
 
+// MAPS ITERTATION / LOOPING
+const question = new Map([
+  ["question", "Whats the best programming language in the world?"],
+  [1, "C"],
+  [2, "Java"],
+  [3, "Python"],
+  [4, "JavaScript"],
+  ["correct", 4],
+  [true, "Correct 🎉"],
+  [false, "Try Again"]
+]);
+
+console.log(question)
+// Converting objects to maps
+console.log(Object.entries(openingHours));
+const hoursMap = new Map(Object.entries(openingHours))
+console.log(hoursMap);
+
+// QUIZ APP
+// Looping over the map
+console.log(question.get("question"));
+for (const [key, value] of question) {
+  typeof key === "number" ? console.log(key, value) : "";
+}
+// const userAnswer = prompt("Whats the answer?");
+const userAnswer = 4;
+
+// if (userAnswer == question.get("correct")) {
+//   console.log(question.get(true));
+// } else {
+//   console.log(question.get(false));
+// }
+
+console.log(question.get(userAnswer == question.get("correct")));
+
+// Convert Map to Array
+const questionArr = new Array([...question]);
+console.log(questionArr);
+console.log(question.entries());
+console.log(question.keys());
+console.log([...question.keys()]);
+console.log(question.values());
+console.log([...question.values()]); 
