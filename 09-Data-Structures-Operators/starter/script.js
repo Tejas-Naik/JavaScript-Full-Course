@@ -1,9 +1,5 @@
 'use strict';
 
-// Data needed for a later exercise
-const flights =
-  '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
-
 // Data needed for first part of the section
 const openingHours = {
   thu: {
@@ -732,4 +728,36 @@ const capitalizeName = function (name) {
 capitalizeName("jessica ann smith davis");
 capitalizeName("jonas schemedtmann");
 capitalizeName("tejas rajendra naik");
+
+// Padding
+// Adding chars to a string until it has a desired length of chars
+
+const message = "Go to gate 23!";
+console.log(message.padStart(25, "+"));
+console.log(message.padEnd(25, "-"));
+
+console.log("".padStart(30, "+"));
+console.log("RN Tejas".padStart(19, "=").padEnd(30, "="))
+console.log("".padStart(30, "+"));
+
+const showCreditCardNumber = function (number) {
+  number = number + ""
+  const last4 = number.slice(-4);
+  console.log(last4.padStart(number.length, "X"));
+}
+showCreditCardNumber("123456789012");
+showCreditCardNumber(5569098756876789);
+showCreditCardNumber("2445677668895339");
+
+// Repeat
+const message2 = "Bad weather... All departures Delayed...";
+console.log(message2.repeat(4))
+
+const planesInLine = function (n) {
+  console.log(`There are ${n} planes in line`);
+  console.log(`Planes : ${"✈".repeat(n)}`);
+}
+
+planesInLine(10);
+
 
