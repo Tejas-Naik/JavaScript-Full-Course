@@ -702,4 +702,34 @@ checkBaggage("I have a Laptop, some Food and a pocket Knife");
 checkBaggage("Socks and camera");
 checkBaggage("got some snacks and gun for protection");
 
+// Split method on strings
+// SPLIT METHOD
+// it splits the string from the char you pass and adds them to the array
+
+console.log("a+very+nice+string".split("+"));
+console.log('Tejas Naik'.split(" "));
+const [firstName, lastName] = 'Tejas Naik'.split(" ");
+console.log(firstName);
+console.log(lastName);
+
+// JOIN method
+// the join method joins the array into a string
+const newName = ["Mr.", firstName, lastName.toUpperCase()].join(" ");
+console.log(newName);
+
+// capitalizing
+const capitalizeName = function (name) {
+  const splitName = name.split(" ");
+  const joinName = []
+  for (let n of splitName) {
+    // const capitalizedName = n[0].toUpperCase() + n.slice(1)
+    const capitalizedName = n[0].replace(n[0], n[0].toUpperCase()) + n.slice(1);
+    joinName.push(capitalizedName)
+  }
+  console.log(joinName.join(" "))
+}
+
+capitalizeName("jessica ann smith davis");
+capitalizeName("jonas schemedtmann");
+capitalizeName("tejas rajendra naik");
 
