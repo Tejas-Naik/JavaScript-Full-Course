@@ -641,3 +641,26 @@ checkMiddleSeat("10A");
 checkMiddleSeat("10B");
 checkMiddleSeat("10E");
 
+// String methods
+// changing case
+console.log(airline.toLowerCase());
+console.log(airline.toUpperCase());
+
+// Fix capitalixation in name
+const fname = "tEjAS"   // Tejas
+const fixedName = fname[0].toUpperCase() + fname.slice(1).toLowerCase()
+console.log(fixedName);
+
+// check email
+const email = "example@abc.com";
+const loginEmail = "   Example@ABC.cOm \n";
+
+const lowerEmail = loginEmail.toLocaleLowerCase();
+const trimmedEmail = lowerEmail.trim();
+console.log(trimmedEmail);
+
+const normalizedEmail = loginEmail.toLowerCase().trim();
+console.log(normalizedEmail);
+
+console.log(email === normalizedEmail);
+
