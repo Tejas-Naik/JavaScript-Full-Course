@@ -664,3 +664,42 @@ console.log(normalizedEmail);
 
 console.log(email === normalizedEmail);
 
+// Replacing
+const priceGB = "288,97£";
+const priceUS = priceGB.replace("£", "$").replace(",", ".");
+console.log(priceUS);
+
+const announcement = "All passangers come to boarding door 23. Boarding door 23!";
+// replacing board with gate
+console.log(
+  announcement.replaceAll("door", "gate") // replace only replaces first
+);
+// regular expression
+console.log(
+  announcement.replaceAll(/door/g, "gate")
+);
+
+// Booleans
+const newPlane = "A320neo";
+console.log(newPlane.includes("A320"));
+console.log(newPlane.includes("Boeing"));
+
+console.log(newPlane.startsWith("A"));
+console.log(newPlane.startsWith("B"));
+
+console.log(newPlane.endsWith("A"));
+console.log(newPlane.endsWith("neo"));
+
+// Practice Exercise
+const checkBaggage = function (items) {
+  const baggage = items.toLowerCase();
+  if (baggage.includes("gun") || baggage.includes("knife")) {
+    console.log("You are not allowed :(");
+  } else console.log("Welcome aboard! :)");
+}
+
+checkBaggage("I have a Laptop, some Food and a pocket Knife");
+checkBaggage("Socks and camera");
+checkBaggage("got some snacks and gun for protection");
+
+
