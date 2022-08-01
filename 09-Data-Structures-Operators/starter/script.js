@@ -599,6 +599,45 @@ console.log(question.entries());
 console.log(question.keys());
 console.log([...question.keys()]);
 console.log(question.values());
-console.log([...question.values()]); 
+console.log([...question.values()]);
 */
+
+/////////////////////////////
+// STRINGS : 
+/////////////////////////////
+const airline = "TAP Air Portugal";
+const plane = "A320";
+
+// Getting the letter from index
+console.log(plane[0])
+console.log(plane[1])
+console.log(plane[2])
+console.log(plane[3])
+
+console.log("B737"[0]);
+console.log(plane.length);
+
+console.log(airline.indexOf("r"));
+console.log(airline.lastIndexOf("r"));
+console.log(airline.indexOf("Portugal"));
+
+// SLICING
+console.log(airline.slice(4));   // start(4)
+console.log(airline.slice(4, 7));   // start(4), end(7)
+// first word
+console.log(airline.slice(0, airline.indexOf(" ")));
+// last word
+console.log(airline.slice(airline.lastIndexOf(" ") + 1));
+// Slicing negatively
+console.log(airline.slice(-2));
+
+const checkMiddleSeat = function (seat) {
+  // Seat = 11B, 12E, 10A - B&E are middle seats
+  const result = seat.slice(-1) === "B" || seat.slice(-1) === "E" ? "Middle seat" : "Not Middle Seat";
+  console.log(result);
+}
+
+checkMiddleSeat("10A");
+checkMiddleSeat("10B");
+checkMiddleSeat("10E");
 
