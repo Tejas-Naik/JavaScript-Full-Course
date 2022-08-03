@@ -108,7 +108,7 @@ greeter("Jonas");
 const greetArrow = greet => name => console.log(`${greet} ${name}`);
 greetArrow("Hii")("Arrow")
 */
-
+/*
 ////////////////////////////////////////
 // CALL & APPLY METHOD
 ////////////////////////////////////////
@@ -157,7 +157,7 @@ console.log(swissAirline);
 
 // THE BIND METHOD
 // book.call(euroWings, 948, "Bob Mercy");
-const bookEW = book.bind(euroWings);
+const bookEW = book.bind(euroWings);// returns function
 const bookLH = book.bind(lufthansa);
 const bookSW = book.bind(swissAirline);
 bookEW(1, "Tejas Naik");
@@ -200,3 +200,24 @@ const gst = function (rate) {
 }
 
 console.log(gst(.18)(100));
+*/
+
+//////////////////////////////////
+// Immidiately Invoked Function Expression
+//////////////////////////////////
+// IIFE means a function that will only run once
+// After that it will disappears
+const runOnce = function () {
+    console.log("This will never run again")
+}
+runOnce();
+runOnce();   // if we do this then we can run this as many times as want
+
+
+// IIFE
+// Declaration
+(function () {
+    console.log("This will literally never run again");
+})();
+// Arrow
+(() => console.log("This will literally never run again"))()
