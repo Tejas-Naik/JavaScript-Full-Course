@@ -67,6 +67,7 @@ checkIn(flightNum, tejas)
 
 */
 
+/*
 ///////////////////////////////////////
 // FIRST CLASS /HIGHER ORDER FUNCTIONS
 ///////////////////////////////////////
@@ -106,3 +107,50 @@ greeter("Jonas");
 
 const greetArrow = greet => name => console.log(`${greet} ${name}`);
 greetArrow("Hii")("Arrow")
+*/
+
+////////////////////////////////////////
+// CALL & APPLY METHOD
+////////////////////////////////////////
+const lufthansa = {
+    airline: "Lufthansa",
+    iataCode: 'LH',
+    bookings: [],
+    // book : function(){}
+    book(flightNum, name) {
+        console.log(`${name} booked a seat on ${this.airline} flight ${this.iataCode}${flightNum}`);
+        this.bookings.push({ flight: `${this.iataCode}${this.flightNum}`, name: name })
+    }
+}
+
+lufthansa.book(239, "Tejas Naik");
+lufthansa.book(635, "John Smith");
+
+const euroWings = {
+    airline: "Eurowings",
+    iataCode: "EW",
+    bookings: [],
+}
+
+const book = lufthansa.book;
+// Doesnt work
+// book(244, "Tejas");
+
+// Call method - takes direct arguement.
+book.call(euroWings, 239, "Gotham");
+console.log(euroWings);
+book.call(lufthansa, 112, "Sarah Johns");
+
+const swissAirline = {
+    airline: "Swiss Air Lines",
+    iataCode: "LX",
+    bookings: [],
+}
+
+book.call(swissAirline, 69, "Chill mate")
+
+// Apply Method [takes array of arguements]
+const flightData = [696, "Mary Cooper"]
+book.apply(swissAirline, flightData);
+
+console.log(swissAirline);
