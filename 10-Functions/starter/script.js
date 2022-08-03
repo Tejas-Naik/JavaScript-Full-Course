@@ -154,3 +154,49 @@ const flightData = [696, "Mary Cooper"]
 book.apply(swissAirline, flightData);
 
 console.log(swissAirline);
+
+// THE BIND METHOD
+// book.call(euroWings, 948, "Bob Mercy");
+const bookEW = book.bind(euroWings);
+const bookLH = book.bind(lufthansa);
+const bookSW = book.bind(swissAirline);
+bookEW(1, "Tejas Naik");
+bookLH(1, "Tejas Naik");
+bookSW(1, "Tejas Naik");
+
+const bookEW23 = book.bind(euroWings, 23)   // setting flightNum=23;
+bookEW23("Jake")
+
+// With Event Listeners
+lufthansa.planes = 300;
+lufthansa.buyPlane = function () {
+    console.log(this);
+    this.planes++
+    console.log(this.planes);
+}
+
+// document.querySelector('.buy').addEventListener('click', lufthansa.buyPlane);
+// In the above example the this keyword is set to the button
+// so we want it to be lufthansa so use .bind()
+
+
+document.querySelector('.buy').addEventListener('click', lufthansa.buyPlane.bind(lufthansa));
+
+// Partial application - means setting some arguements beforehand
+const addTax = (rate, value) => value + value * rate
+console.log(addTax(.1, 100));
+console.log(addTax(.1, 200));
+
+const addVAT = addTax.bind(null, .23);  // first arg is null bcz its the object so there is no obj to call on
+console.log(addVAT(100));
+
+const addGST = addTax.bind(null, .18);
+console.log(addGST(100000));
+
+const gst = function (rate) {
+    return function (value) {
+        return value + value * rate;
+    }
+}
+
+console.log(gst(.18)(100));
