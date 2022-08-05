@@ -222,7 +222,7 @@ runOnce();   // if we do this then we can run this as many times as want
 // Arrow
 (() => console.log("This will literally never run again"))()
 */
-
+/*
 ///////////////////////////////
 // CLOSURES
 ///////////////////////////////
@@ -239,3 +239,43 @@ const booker = secureBooking();
 // Closure allows us to use the variables of securebooking in the booker function even if it is global scoped and variables in side functions are not accessed outside
 // Closure has more priority than the global vars
 console.dir(booker)
+*/
+
+// More about closures
+
+// Example 1
+let f;
+const g = function () {
+    const a = 7;
+    f = function () {
+        console.log(a * 2);
+    }
+}
+
+const h = function () {
+    const b = 777;
+    f = function () {
+        console.log(b * 2);
+    }
+}
+
+g();
+// it is global but still has access to the `a` var
+f();
+
+h();
+f();
+
+// Example 2
+const boardPassangers = function (n, wait) {
+    const perGroup = n / 3;
+
+    setTimeout(function () {
+        console.log(`We are now boarding all ${n} passangers`);
+        console.log(`There are 3 groups each with ${perGroup} passangers`);
+    }, wait * 1000);
+
+    console.log(`Will start boarding in ${wait} seconds`)
+}
+const perGroup = 1000;      // it has access over the global context because CLOSURES
+boardPassangers(180, 3);
