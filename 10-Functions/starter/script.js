@@ -201,7 +201,7 @@ const gst = function (rate) {
 
 console.log(gst(.18)(100));
 */
-
+/*
 //////////////////////////////////
 // Immidiately Invoked Function Expression
 //////////////////////////////////
@@ -221,3 +221,21 @@ runOnce();   // if we do this then we can run this as many times as want
 })();
 // Arrow
 (() => console.log("This will literally never run again"))()
+*/
+
+///////////////////////////////
+// CLOSURES
+///////////////////////////////
+const secureBooking = function () {
+    let passangerCount = 0;
+    return function () {
+        passangerCount++
+        console.log(`${passangerCount} passangers`);
+    }
+};
+
+const booker = secureBooking();
+// Closure is a way of remembering all the variables at its birth place no matter what
+// Closure allows us to use the variables of securebooking in the booker function even if it is global scoped and variables in side functions are not accessed outside
+// Closure has more priority than the global vars
+console.dir(booker)
