@@ -71,7 +71,7 @@ const currencies = new Map([
   ['GBP', 'Pound sterling'],
 ]);
 
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
 /*
@@ -112,7 +112,7 @@ console.log([...arr, ...arr2]);
 // join method joins the arrays child with the cahr we pass
 console.log(letters.join(" - "));
 */
-
+/*
 // .at() method
 const arr = [23, 11, 64];
 console.log(arr[0]);
@@ -122,3 +122,40 @@ console.log(arr.at(0));
 console.log(arr[arr.length - 1]);
 console.log(arr.slice(-1)[0]);
 console.log(arr.at(-1));
+*/
+
+//////////////////////////////////////////////
+// FOR-EACH METHOD
+//////////////////////////////////////////////
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+for (const movement of movements) {
+  if (movement > 0) console.log(`You deposited ${movement}`);
+  else console.log(`You withdrew ${Math.abs(movement)}`);
+}
+
+// forEach method
+console.log("---------FOR EACH---------");
+movements.forEach(function (movement) {
+  if (movement > 0) console.log(`You deposited ${movement}`);
+  else console.log(`You withdrew ${Math.abs(movement)}`);
+});
+
+// With Index
+for (const [i, movement] of movements.entries()) {
+  if (movement > 0) console.log(`Movement ${i + 1}: You deposited ${movement}`);
+  else console.log(`Movement ${i + 1}: You withdrew ${Math.abs(movement)}`);
+};
+
+// The forEach method passes 3 parameters to the callback function
+// Element, Index, Array
+movements.forEach(function (movement, index, array) {
+  console.log(movement, index, array)
+})
+
+movements.forEach(function (movement, index, array) {
+  if (movement > 0) console.log(`Movement ${index + 1} : deposited ${movement}`);
+  else console.log(`Movement ${index + 1} : withdrew ${Math.abs(movement)}`);
+})
+
+// When to use for-of and for-each well there is one difference between that is : break and continue doesnt work on foreach
