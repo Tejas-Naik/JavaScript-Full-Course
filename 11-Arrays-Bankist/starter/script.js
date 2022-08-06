@@ -74,3 +74,39 @@ const currencies = new Map([
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
+// Some more array method
+/////////////////////////////////////////////////
+let arr = ["a", "b", "c", "d", "e"];
+
+// .slice() method (doesnt change the original)
+console.log(arr.slice(2));  // c,d,e
+console.log(arr.slice(2, 4));  // c,d
+console.log(arr.slice(-2));  // d,e
+console.log(arr.slice(-1));  // e last element of an array
+console.log(arr.slice(1, -2));  // b,c
+
+console.log(arr.slice());   // Copy array
+
+// .splice() method (changes original)
+// splice is same as slice but it changes the original array
+console.log(arr.splice(2)); // it extracts the original array
+console.log(arr);        // a,b
+
+arr.splice(-1) // Remove last element
+console.log(arr);
+
+// .reverse() method  (changes original)
+arr = ["a", "b", "c", "d", "e"];
+const arr2 = ["j", "i", "h", "g", "f"];
+console.log(arr2.reverse());
+console.log(arr2);
+
+// .concat() method (doesnt change original)
+const letters = arr.concat(arr2);
+console.log(letters);
+console.log([...arr, ...arr2]);
+
+// .join() method
+// join method joins the arrays child with the cahr we pass
+console.log(letters.join(" - "));
+
