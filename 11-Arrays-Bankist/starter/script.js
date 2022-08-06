@@ -65,13 +65,9 @@ const inputClosePin = document.querySelector('.form__input--pin');
 /////////////////////////////////////////////////
 // LECTURES
 
-const currencies = new Map([
-  ['USD', 'United States dollar'],
-  ['EUR', 'Euro'],
-  ['GBP', 'Pound sterling'],
-]);
 
-// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
 /*
@@ -123,7 +119,7 @@ console.log(arr[arr.length - 1]);
 console.log(arr.slice(-1)[0]);
 console.log(arr.at(-1));
 */
-
+/*
 //////////////////////////////////////////////
 // FOR-EACH METHOD
 //////////////////////////////////////////////
@@ -159,3 +155,23 @@ movements.forEach(function (movement, index, array) {
 })
 
 // When to use for-of and for-each well there is one difference between that is : break and continue doesnt work on foreach
+*/
+// forEach with maps
+const currencies = new Map([
+  ['USD', 'United States dollar'],
+  ['EUR', 'Euro'],
+  ['GBP', 'Pound sterling'],
+  ['INR', 'Indian National Rupee']
+]);
+
+// map.forEach(function(value, key, map))
+currencies.forEach(function (value, key, map) {
+  console.log(`${key} : ${value}`);
+});
+
+// forEach with sets
+const currenciesSet = new Set(["INR", "USD", "EUR", "GBP"]);
+console.log(currenciesSet);
+currenciesSet.forEach(function (value, _, set) {
+  console.log(`${value}, ${_}, ${set}`);
+})
