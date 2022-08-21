@@ -81,6 +81,17 @@ const displayMovements = function (movements) {
 
 displayMovements(account1.movements);
 
+const createUsernames = function (accs) {
+  accs.forEach(function (acc) {
+    const user = acc.owner;
+    acc.username = user.toLowerCase().split(" ").map(name => name[0]).join("");
+
+  })
+}
+
+createUsernames(accounts);
+
+
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
@@ -200,6 +211,7 @@ currenciesSet.forEach(function (value, _, set) {
 // Filter is used to create new array with filters if the els pass the filter they are added to the array
 // Reduce is used to reduce the array's values to a single value -> sum
 
+/*
 // MAP METHOD
 const euroMovements = movements;
 const dollarMovements = euroMovements.map(function (mov, i, arr) {
@@ -228,5 +240,24 @@ const movementsDescription = movements.map((mov, i, arr) => {
 console.log(movementsDescription);
 
 // forEach performs action whereas the map method returns new array
+*/
 
+// FILTER METHOD
+// Filter method will filter out some elements outta the array to fulfil the condition
+
+const deposits = movements.filter(function (mov) {
+  // only the mov's that pass the condition will be stored in the new array
+  return mov > 0;   //  return boolean
+})
+const withdraws = movements.filter(mov => mov < 0);
+
+console.log(deposits);
+console.log(withdraws);
+
+// forOf
+const depositForOf = []
+for (const mov of movements) {
+  if (mov > 0) depositForOf.push(mov)
+}
+console.log(depositForOf);
 
