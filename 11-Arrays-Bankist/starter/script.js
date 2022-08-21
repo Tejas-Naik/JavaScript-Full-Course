@@ -61,6 +61,7 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
+// DOM Manipulation
 const displayMovements = function (movements) {
   containerMovements.innerHTML = '';
   movements.forEach(function (mov, i) {
@@ -194,3 +195,38 @@ currenciesSet.forEach(function (value, _, set) {
   console.log(`${value}, ${_}, ${set}`);
 })
 */
+// MAP, FILTER, REDUCE methods for data transformation
+// Map is used to create new array with some functionality like *2 every element (same as forEach but new array)
+// Filter is used to create new array with filters if the els pass the filter they are added to the array
+// Reduce is used to reduce the array's values to a single value -> sum
+
+// MAP METHOD
+const euroMovements = movements;
+const dollarMovements = euroMovements.map(function (mov, i, arr) {
+  return mov * 1.1;
+});
+
+console.log(dollarMovements);
+
+//Arrow Map
+const dollarMovementsArr = euroMovements.map(mov => mov * 1.1);
+console.log(dollarMovementsArr);
+
+// for of
+const movementsUSDforof = [];
+for (const mov of euroMovements) {
+  const movUSD = mov * 1.1
+  movementsUSDforof.push(movUSD)
+}
+console.log(movementsUSDforof);
+
+// index, array
+const movementsDescription = movements.map((mov, i, arr) => {
+  const type = (mov > 0) ? "deposit" : "withdrawal";
+  return `Movement ${i + 1} : ${type} of ${Math.abs(mov)}`;
+});
+console.log(movementsDescription);
+
+// forEach performs action whereas the map method returns new array
+
+
