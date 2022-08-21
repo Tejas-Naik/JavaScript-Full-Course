@@ -81,15 +81,22 @@ const displayMovements = function (movements) {
 
 displayMovements(account1.movements);
 
+const calcDisplayBalance = function (movements) {
+  const balance = movements.reduce((acc, mov) => acc += mov, 0)
+  labelBalance.textContent = `${balance} EUR`;
+};
+
+calcDisplayBalance(account1.movements)
+
 const createUsernames = function (accs) {
   accs.forEach(function (acc) {
     const user = acc.owner;
     acc.username = user.toLowerCase().split(" ").map(name => name[0]).join("");
-
   })
 }
 
 createUsernames(accounts);
+
 
 
 /////////////////////////////////////////////////
@@ -241,7 +248,7 @@ console.log(movementsDescription);
 
 // forEach performs action whereas the map method returns new array
 */
-
+/*
 // FILTER METHOD
 // Filter method will filter out some elements outta the array to fulfil the condition
 
@@ -260,4 +267,28 @@ for (const mov of movements) {
   if (mov > 0) depositForOf.push(mov)
 }
 console.log(depositForOf);
+*/
+// REDUCE METHOD
+// the reduce method returns a value not an array
+// the parameters of the callback functions are(accumulator, current, i, arr)
 
+// funcion expression
+const balance = movements.reduce(function (accumulator, current, i, arr) {
+  // accumulator is like a snowball we can add to it (a outside var)
+  console.log(accumulator);
+  return accumulator + current;
+}, 0)  // 0 is the starting value of the accumulator
+console.log(balance);
+
+// Arrow funcion
+const balanceArrow = movements.reduce((acc, mov) => acc += mov)
+console.log(balanceArrow);
+
+// Geting maximum from the array using reduce
+const maxInMovements = movements.reduce(function (acc, mov) {
+  return (mov > acc) ? mov : acc;
+}, movements[0])
+console.log(maxInMovements)
+
+const maxInMovementsArr = movements.reduce((acc, mov) => (mov > acc) ? acc = mov : acc = acc, movements[0])
+console.log(maxInMovementsArr);
