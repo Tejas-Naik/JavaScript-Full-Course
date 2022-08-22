@@ -411,3 +411,17 @@ console.log(accountForOf);
 // FIND INDEX METHOD
 //////////////////////////////////
 
+
+//////////////////////////////////
+// SOME AND EVERY
+//////////////////////////////////
+// we can use includes for the true/false
+console.log(movements);
+console.log(movements.includes(-130));
+
+// EQUALITY
+const anyDeposit = movements.some((mov) => mov > 0);
+console.log(anyDeposit)
+// CONDITION
+const anyDeposit50k = movements.some((mov) => mov > 50000);
+console.log(anyDeposit50k);
