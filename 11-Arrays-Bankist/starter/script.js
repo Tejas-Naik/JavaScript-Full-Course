@@ -424,7 +424,7 @@ console.log(accountForOf);
 // FIND INDEX METHOD
 //////////////////////////////////
 
-
+/*
 //////////////////////////////////
 // SOME AND EVERY
 //////////////////////////////////
@@ -452,3 +452,33 @@ const callBcFn = function (mov) {
 
 const allDepositsOutsideFunction = account4.movements.every(callBcFn);
 console.log(allDepositsOutsideFunction);
+*/
+
+/////////////////////////////////
+// FLAT / FLATMAP METHODS
+/////////////////////////////////
+// Flat just makes the arrays flat like [asd[fas][fas[fas]df]] nested array to a simple array [ssassgf]
+const arr = [[1, 2, 3], [4, 5, 6], 7, 8];
+const arrDeep = [[1, [2, 3]], [[4, 5], 6], 7, 8];
+const arrOne = arr.flat()
+console.log(arrOne);
+console.log(arrDeep.flat());
+console.log(arrDeep.flat(2));
+
+// Total of all movements so far in the bank
+const accountMovements = accounts.map(acc => acc.movements)
+const accountMovementsOneArr = accountMovements.flat();
+const total = accountMovementsOneArr.reduce((acc, mov) => acc + mov, 0);
+console.log(total);
+
+const total2 = accounts
+  .map(acc => acc.movements)
+  .flat()
+  .reduce((acc, mov) => acc + mov, 0);
+console.log(total2);
+
+// as you can see in the above example it is very common to use flat after 
+// map so therefore there was new mothod called flatMap
+const totalFlatMap = accounts.flatMap(acc => acc.movements).reduce((acc, mov) => acc + mov, 0);
+console.log(totalFlatMap);
+
