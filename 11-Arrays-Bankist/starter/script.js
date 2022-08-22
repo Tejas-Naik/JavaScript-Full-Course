@@ -180,6 +180,19 @@ btnClose.addEventListener('click', function (e) {
   inputCloseUsername.value = inputClosePin.value = ""
 })
 
+// REQUEST LOAN
+btnLoan.addEventListener('click', function (e) {
+  e.preventDefault();
+
+  const loanAmount = Number(inputLoanAmount.value);
+  if (loanAmount > 0) {
+    currentAccount.movements.some(mov => mov >= loanAmount * .10);
+    currentAccount.movements.push(loanAmount);
+    updateUI(currentAccount);
+  }
+  inputLoanAmount.value = "";
+})
+
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
@@ -419,9 +432,23 @@ console.log(accountForOf);
 console.log(movements);
 console.log(movements.includes(-130));
 
-// EQUALITY
+// EQUALITY : SOME
 const anyDeposit = movements.some((mov) => mov > 0);
 console.log(anyDeposit)
 // CONDITION
 const anyDeposit50k = movements.some((mov) => mov > 50000);
 console.log(anyDeposit50k);
+
+// EQUALITY : EVERY - it will return true/run only when all the passed arguements pass the test/condition
+const allDeposits = movements.every(mov => mov > 0);
+const allDepositstrue = account4.movements.every(mov => mov > 0);
+console.log(allDeposits);
+console.log(allDepositstrue);
+
+// separate callback
+const callBcFn = function (mov) {
+  return mov > 0
+}
+
+const allDepositsOutsideFunction = account4.movements.every(callBcFn);
+console.log(allDepositsOutsideFunction);
