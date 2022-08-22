@@ -72,7 +72,7 @@ const displayMovements = function (movements) {
             ${i + 1} ${type}
           </div>
           <div class="movements__date">24/01/2037</div>
-          <div class="movements__value">${mov}</div>
+          <div class="movements__value">${mov}€</div>
         </div>`
     containerMovements.insertAdjacentHTML('afterbegin', html);
     // containerMovements.insertAdjacentHTML('beforeend', html);
@@ -88,6 +88,22 @@ const calcDisplayBalance = function (movements) {
 
 calcDisplayBalance(account1.movements)
 
+const calcDisplaySummary = function (movements) {
+  const income = movements.filter((mov) => mov > 0).reduce((acc, mov) => acc + mov);
+  labelSumIn.textContent = `${income}€`;
+
+  const outcome = movements.filter((mov) => mov < 0).reduce((acc, mov) => acc + mov);
+  labelSumOut.textContent = `${Math.abs(outcome)}€`;
+
+  // giving 1.2% interest on every deposit
+  const interest = movements.filter((mov) => mov > 0)
+    .map((deposit) => deposit * .012)
+    .filter((int) => int >= 1)
+    .reduce((acc, interest) => acc + interest);
+  labelSumInterest.textContent = `${interest}€`;
+}
+
+calcDisplaySummary(account1.movements)
 const createUsernames = function (accs) {
   accs.forEach(function (acc) {
     const user = acc.owner;
@@ -268,6 +284,8 @@ for (const mov of movements) {
 }
 console.log(depositForOf);
 */
+
+/*
 // REDUCE METHOD
 // the reduce method returns a value not an array
 // the parameters of the callback functions are(accumulator, current, i, arr)
@@ -292,3 +310,14 @@ console.log(maxInMovements)
 
 const maxInMovementsArr = movements.reduce((acc, mov) => (mov > acc) ? acc = mov : acc = acc, movements[0])
 console.log(maxInMovementsArr);
+*/
+
+///////////////////////////////
+// CHAINING (map, filter, reduce)
+///////////////////////////////
+const totalDepositsUSD = movements
+  .filter((mov) => mov > 0)
+  .map((mov) => mov * 1.1)
+  .reduce((acc, mov) => acc + mov);
+console.log(totalDepositsUSD);
+
