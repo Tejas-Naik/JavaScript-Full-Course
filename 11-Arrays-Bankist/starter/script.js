@@ -62,9 +62,12 @@ const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
 // DOM Manipulation
-const displayMovements = function (movements) {
+const displayMovements = function (movements, sort = false) {
   containerMovements.innerHTML = '';
-  movements.forEach(function (mov, i) {
+
+  const movs = sort ? movements.slice().sort((a, b) => a - b) : movements;
+
+  movs.forEach(function (mov, i) {
     const type = `${mov > 0 ? "deposit" : "withdrawal"}`;
     const html = `
         <div class="movements__row">
@@ -76,6 +79,7 @@ const displayMovements = function (movements) {
         </div>`
     containerMovements.insertAdjacentHTML('afterbegin', html);
     // containerMovements.insertAdjacentHTML('beforeend', html);
+
   });
 };
 
@@ -191,6 +195,14 @@ btnLoan.addEventListener('click', function (e) {
     updateUI(currentAccount);
   }
   inputLoanAmount.value = "";
+})
+
+// Sort Movements
+let isSorting = false;
+btnSort.addEventListener('click', function (e) {
+  e.preventDefault();
+  displayMovements(currentAccount.movements, !isSorting);
+  isSorting = !isSorting;
 })
 
 /////////////////////////////////////////////////
@@ -453,7 +465,7 @@ const callBcFn = function (mov) {
 const allDepositsOutsideFunction = account4.movements.every(callBcFn);
 console.log(allDepositsOutsideFunction);
 */
-
+/*
 /////////////////////////////////
 // FLAT / FLATMAP METHODS
 /////////////////////////////////
@@ -481,4 +493,35 @@ console.log(total2);
 // map so therefore there was new mothod called flatMap
 const totalFlatMap = accounts.flatMap(acc => acc.movements).reduce((acc, mov) => acc + mov, 0);
 console.log(totalFlatMap);
+*/
 
+/////////////////////////////
+// SORTING ARRAYS
+/////////////////////////////
+
+// Strings
+const array = ["Tejas", "Jonas", "Zack", "Angela"];
+console.log(array.sort());
+console.log(array);
+
+// Numbers
+console.log(movements.sort());
+
+// SORT - only works with strings
+
+// to make sort work with numbers we can pass in the callBacFn to do so
+
+// Ascending
+// movements.sort((a, b) => {
+//   if (a > b) return 1;
+//   if (b > a) return -1;
+// })
+movements.sort((a, b) => a - b)
+
+// Descending
+movements.sort((a, b) => {
+  if (a > b) return -1;
+  if (b > a) return 1;
+})
+
+console.log(movements);
