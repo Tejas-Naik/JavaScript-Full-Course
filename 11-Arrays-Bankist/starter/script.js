@@ -143,7 +143,7 @@ btnLogin.addEventListener('click', function (e) {
   }
 });
 
-// TRANSFER MONEY
+// TRANSFER MONEY 
 btnTransfer.addEventListener('click', function (e) {
   e.preventDefault();
   const transferAmount = Number(inputTransferAmount.value);
@@ -163,6 +163,22 @@ btnTransfer.addEventListener('click', function (e) {
     updateUI(currentAccount);
   }
 });
+
+// CLOSE ACCOUNT
+btnClose.addEventListener('click', function (e) {
+  e.preventDefault();
+  if (
+    inputCloseUsername.value === currentAccount.username &&
+    Number(inputClosePin.value) === currentAccount.pin
+  ) {
+    const deleteIndex = accounts.findIndex((acc) => acc.username === currentAccount.username);
+    accounts.splice(deleteIndex, 1);
+
+    // Hide UI
+    containerApp.style.opacity = 0;
+  }
+  inputCloseUsername.value = inputClosePin.value = ""
+})
 
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
@@ -367,12 +383,12 @@ const totalDepositsUSD = movements
   .reduce((acc, mov) => acc + mov);
 console.log(totalDepositsUSD);
 */
-
+/*
 //////////////////////////////////
 // FIND METHOD
 //////////////////////////////////
 // Find method finds the first element in the array that satisfies the condition
-// filter vs find 
+// filter vs find
 // filter returns new array----------find returns a value
 // filter returns all the el that satisfies the condition----------find returns a the first value
 
@@ -390,3 +406,8 @@ for (const acc of accounts) {
 }
 
 console.log(accountForOf);
+*/
+//////////////////////////////////
+// FIND INDEX METHOD
+//////////////////////////////////
+
