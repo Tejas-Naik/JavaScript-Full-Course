@@ -489,12 +489,12 @@ const total2 = accounts
   .reduce((acc, mov) => acc + mov, 0);
 console.log(total2);
 
-// as you can see in the above example it is very common to use flat after 
+// as you can see in the above example it is very common to use flat after
 // map so therefore there was new mothod called flatMap
 const totalFlatMap = accounts.flatMap(acc => acc.movements).reduce((acc, mov) => acc + mov, 0);
 console.log(totalFlatMap);
 */
-
+/*
 /////////////////////////////
 // SORTING ARRAYS
 /////////////////////////////
@@ -525,3 +525,43 @@ movements.sort((a, b) => {
 })
 
 console.log(movements);
+*/
+
+// Creating and Filling Arrays
+console.log([1, 2, 3, 4, 5, 6, 7]);
+console.log(new Array(1, 2, 3, 4, 5, 6, 7));
+
+const x = new Array(7);     // it will create a new array with 7 empty spots
+console.log(x);
+console.log(x.map(() => 5));
+
+// to fill the array with values you use .fill() method
+x.fill(10)      // this will fill entire array
+x.fill(1, 3)    // fill 1 after the index 3
+x.fill(1, 3, 5)   // fill one from 3 to 5 index
+console.log(x);
+
+// you can mutate any array with the fill method
+const array = [1, 2, 3, 4, 5, 6];
+array.fill(7, 2, 5);
+console.log(array)
+
+// Array.from()
+const y = Array.from({ length: 7 }, () => 1);
+console.log(y);
+
+const z = Array.from({ length: 7 }, (cur, i) => i + 1);
+console.log(z);
+
+
+const diceRolls = Array.from({ length: 100 }, () => Math.floor(Math.random() * 6) + 1);
+console.log(diceRolls);
+
+// the Array.from() is mostly used to create arrays from other data types/structures
+let movementsUI;
+
+labelBalance.addEventListener('click', function () {
+  movementsUI = Array.from(document.querySelectorAll('.movements__value')),
+    (el) => Number(el.textContent.replace("€", ""));
+})
+
