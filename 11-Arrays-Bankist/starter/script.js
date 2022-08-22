@@ -81,25 +81,26 @@ const displayMovements = function (movements) {
 
 // displayMovements(account1.movements);
 
-const calcDisplayBalance = function (movements) {
-  const balance = movements.reduce((acc, mov) => acc += mov, 0)
+const calcDisplayBalance = function (acc) {
+  const balance = acc.movements.reduce((acc, mov) => acc += mov, 0)
+  acc.balance = balance;
   labelBalance.textContent = `${balance}€`;
 };
 
 // calcDisplayBalance(account1.movements)
 
-const calcDisplaySummary = function (movements) {
-  const income = movements.filter((mov) => mov > 0).reduce((acc, mov) => acc + mov);
+const calcDisplaySummary = function (acc) {
+  const income = acc.movements.filter((mov) => mov > 0).reduce((acc, mov) => acc + mov);
   labelSumIn.textContent = `${income}€`;
 
-  const outcome = movements.filter((mov) => mov < 0).reduce((acc, mov) => acc + mov);
+  const outcome = acc.movements.filter((mov) => mov < 0).reduce((acc, mov) => acc + mov);
   labelSumOut.textContent = `${Math.abs(outcome)}€`;
 
   // giving 1.2% interest on every deposit
   const interest = movements.filter((mov) => mov > 0)
-    .map((deposit) => deposit * (currentAccount.interestRate / 100))
+    .map((deposit) => deposit * (acc.interestRate / 100))
     .filter((int) => int >= 1)
-    .reduce((acc, interest) => acc + interest);
+    .reduce((accum, interest) => accum + interest);
   labelSumInterest.textContent = `${interest}€`;
 }
 
@@ -113,9 +114,17 @@ const createUsernames = function (accs) {
 
 createUsernames(accounts);
 
+const updateUI = function (currentAcc) {
+  // Display Movements
+  displayMovements(currentAcc.movements);
+  // Display Balance
+  calcDisplayBalance(currentAcc);
+  // Display Summary
+  calcDisplaySummary(currentAcc);
+}
 // Event Handlers
 let currentAccount;
-
+// LOGIN
 btnLogin.addEventListener('click', function (e) {
   // prevent page from loading
   e.preventDefault();
@@ -130,21 +139,34 @@ btnLogin.addEventListener('click', function (e) {
     inputLoginUsername.value = inputLoginPin.value = "";
     inputLoginPin.blur();   // to make it lose its focus (blinking cursor)
 
-    // Display Movements
-    displayMovements(currentAccount.movements);
-    // Display Balance
-    calcDisplayBalance(currentAccount.movements);
-    // Display Summary
-    calcDisplaySummary(currentAccount.movements);
+    updateUI(currentAccount);
   }
-})
+});
+
+// TRANSFER MONEY
+btnTransfer.addEventListener('click', function (e) {
+  e.preventDefault();
+  const transferAmount = Number(inputTransferAmount.value);
+  const transferAcc = accounts.find(acc => acc.username === inputTransferTo.value);
+
+  inputTransferAmount.value = inputTransferTo.value = "";
+
+  if (
+    transferAmount > 0 &&
+    transferAcc,
+    transferAmount <= currentAccount.balance &&
+    currentAccount?.username !== transferAcc.username
+  ) {
+
+    currentAccount.movements.push(-transferAmount);
+    transferAcc.movements.push(transferAmount);
+    updateUI(currentAccount);
+  }
+});
 
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
-
-
-
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
