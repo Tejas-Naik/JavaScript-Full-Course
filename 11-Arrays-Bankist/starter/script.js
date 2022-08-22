@@ -311,7 +311,7 @@ console.log(maxInMovements)
 const maxInMovementsArr = movements.reduce((acc, mov) => (mov > acc) ? acc = mov : acc = acc, movements[0])
 console.log(maxInMovementsArr);
 */
-
+/*
 ///////////////////////////////
 // CHAINING (map, filter, reduce)
 ///////////////////////////////
@@ -320,4 +320,27 @@ const totalDepositsUSD = movements
   .map((mov) => mov * 1.1)
   .reduce((acc, mov) => acc + mov);
 console.log(totalDepositsUSD);
+*/
 
+//////////////////////////////////
+// FIND METHOD
+//////////////////////////////////
+// Find method finds the first element in the array that satisfies the condition
+// filter vs find 
+// filter returns new array----------find returns a value
+// filter returns all the el that satisfies the condition----------find returns a the first value
+
+const firstWithdrawal = movements.find((mov) => mov < 0);
+console.log(firstWithdrawal);
+
+// finding the user Jessica Davis in accounts [] of {}s
+const account = accounts.find((acc) => acc.owner == "Jessica Davis");
+console.log(account);
+
+// for-of
+let accountForOf;
+for (const acc of accounts) {
+  if (acc.owner === 'Jessica Davis') accountForOf = acc;
+}
+
+console.log(accountForOf);
