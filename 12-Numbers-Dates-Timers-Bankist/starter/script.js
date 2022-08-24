@@ -387,7 +387,7 @@ console.log(Number("1233"));
 console.log(Number("12_33"));
 console.log(parseInt("12_33"));
 */
-
+/*
 // Workign With BigInt
 console.log(2 ** 53 - 1)    // maximum safe number to calculate
 console.log(Number.MAX_SAFE_INTEGER);
@@ -425,4 +425,51 @@ console.log(huge + " is a really big Number :O");
 // Divisions
 console.log(10n / 3n);
 console.log(10 / 3);
+*/
+
+///////////////////////////
+// CREATING DATES
+///////////////////////////
+const now = new Date();
+console.log(now);
+
+// its not good idea to pass custom dates to a Date() constructor untl its created by js (API, Database)
+console.log(new Date('Aug 02 2021, 18:05'));
+console.log(new Date('DECEMBER 25 2005'));
+console.log(new Date('25 DECEMBER 2005 00:00:01'));
+
+account1.movementsDates.forEach((date) => console.log(new Date(date)))
+
+// year, month, day, hour, minute, second
+console.log(new Date(2022, 8, 19, 18, 30, 0))
+console.log(new Date(2022, 8, 45, 18, 30, 0))   // 45th day lol
+
+// UNIX Time - 1,Jan,1970
+console.log(new Date(0));
+console.log(new Date(3 * 24 * 60 * 60 * 1000));   // 3 days after UNIX date
+console.log('---------------------------------');
+// Workign with dates (methods)
+const future = new Date(2037, 10, 19, 15, 23)
+console.log(future);
+console.log(future.getFullYear());
+console.log(future.getMonth());     // 0 based 0 = Jan
+console.log(future.getDate())
+console.log(future.getDay())        // day of the weekday
+console.log(future.getHours());
+console.log(future.getMinutes());
+console.log(future.getSeconds());
+// Nice string
+console.log(future.toISOString())
+// timestamp = milliseconds from UTC till now
+console.log(future.getTime());
+console.log(new Date(2142237180000));
+
+// Current timeStamp = date.now()
+console.log(Date.now());
+
+future.setFullYear(2040);     // also have these for all the methods (day, month, hour...)
+console.log(future);
+
+// For More https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date
+
 
