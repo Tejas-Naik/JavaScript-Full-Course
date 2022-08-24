@@ -290,14 +290,14 @@ console.log(Number.isFinite(23 / 0));
 console.log(Number.isInteger(23));
 console.log(Number.isInteger(23.0));
 */
-
+/*
 /////////////////////////////////
-// Math & ROUNDING 
+// Math & ROUNDING
 /////////////////////////////////
 console.log(Math.sqrt(25));   // - square root
 console.log(25 ** (1 / 2));   // - Math.sqrt
 console.log(Math.cbrt(8));    // - cube root
-console.log(8 ** (1 / 3));    // 
+console.log(8 ** (1 / 3));    //
 
 console.log(Math.max(1, 2, 3, 4, 5, 6, 7, 8, 9));   // returns maximum number
 console.log(Math.max(1, 2, 3, 4, 5, 6, 7, 8, '9'));   // returns maximum number
@@ -343,4 +343,28 @@ console.log(Math.floor(23.999));
 console.log((2.787).toFixed(0))   // toFixed(numbersOfDecimalsToReturn)
 console.log((2.787).toFixed(2));
 console.log(+(2.787).toFixed(2));
+*/
 
+///////////////////////
+// REMAINDER OPERATOR
+///////////////////////
+console.log(5 % 2);   // returns the remainder of dividing 5 & 2
+console.log(5 / 2);
+
+console.log(8 % 3);
+console.log(8 / 3);
+
+const evenOrOdd = function (number) {
+  return (number % 2 == 0) ? "Even" : "Odd";
+}
+
+console.log(evenOrOdd(101));
+console.log(evenOrOdd(100));
+
+document.body.addEventListener('click', function () {
+  [...document.querySelectorAll(".movements__row")].forEach((rowEl, i) => {
+    if (i % 2 == 0) {
+      rowEl.style.backgroundColor = "orangered";
+    }
+  })
+})
