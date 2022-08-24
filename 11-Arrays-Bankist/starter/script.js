@@ -526,7 +526,7 @@ movements.sort((a, b) => {
 
 console.log(movements);
 */
-
+/*
 // Creating and Filling Arrays
 console.log([1, 2, 3, 4, 5, 6, 7]);
 console.log(new Array(1, 2, 3, 4, 5, 6, 7));
@@ -564,4 +564,49 @@ labelBalance.addEventListener('click', function () {
   movementsUI = Array.from(document.querySelectorAll('.movements__value')),
     (el) => Number(el.textContent.replace("€", ""));
 })
+*/
 
+// Array method practice
+// 1.
+const totalDeposit = accounts
+  .map((acc) => acc.movements)
+  .flat()
+  .filter(mov => mov > 0)
+  .reduce((acc, mov) => acc + mov);
+console.log(totalDeposit);
+
+// 2.
+// const depositAbove1000 = accounts
+//   .map((acc) => acc.movements)
+//   .flat()
+//   .filter(mov => mov > 1000).length
+
+const depositAbove1000 = accounts
+  .flatMap((acc) => acc.movements)
+  .reduce((acc, mov) => mov >= 1000 ? acc + 1 : acc, 0)
+
+console.log(accounts.flatMap((acc) => acc.movements));
+console.log(depositAbove1000);
+
+// 3. create object with {deposits: , withdrawals: }
+const sums = accounts
+  .flatMap((acc) => acc.movements)
+  .reduce((acc, mov) => {
+    mov > 0 ? (acc.deposits += mov) : (acc.withdrawals += -mov);
+    return acc;
+  }, { deposits: 0, withdrawals: 0 })
+
+const { deposits, withdrawals } = sums;
+console.log(deposits, withdrawals);
+
+// 4, 
+const convertToTitleCase = function (title) {
+  const exceptions = ["a", "an", "or", "the", "but", "on", "with", "in"];
+
+  const titleCase = title.toLowerCase().split(" ").map(
+    word => (exceptions.includes(word)) ? word : word[0].toUpperCase() + word.slice(1)
+  ).join(" ")
+  return titleCase
+}
+
+console.log(convertToTitleCase("this is a nice title"));    // This Is a Nice Title
