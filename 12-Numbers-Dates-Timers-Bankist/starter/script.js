@@ -369,7 +369,7 @@ document.body.addEventListener('click', function () {
   })
 })
 */
-
+/*
 // Numeric Separators
 const diameterEarth = 287460000000;
 const diameter = 287_460_000_000;
@@ -386,5 +386,43 @@ console.log(transferFee2);
 console.log(Number("1233"));
 console.log(Number("12_33"));
 console.log(parseInt("12_33"));
+*/
 
+// Workign With BigInt
+console.log(2 ** 53 - 1)    // maximum safe number to calculate
+console.log(Number.MAX_SAFE_INTEGER);
+
+//  After/  the numbers above this will not be calculated correctly
+console.log(2 ** 53 + 1);
+console.log(2 ** 53 + 2);
+console.log(2 ** 53 + 3);
+console.log(2 ** 53 + 4);
+console.log(2 ** 53 + 5);
+
+// the biggest safe number that we can use to store numbers in javascript is (2 ** 53 - 1);
+// cl(Number(MAX_SAFE_INTEGER)); after this number calculations can be messed up
+
+// for big numbers we use BigInt()
+// create a bigInt with `n` suffix after a number
+console.log(8765434567898765433456789098765432n);
+console.log(BigInt(999999999999));
+// console.log(Math.sqrt(16n));
+// Operations
+console.log(10000n + 10000n);
+
+const huge = 8754334567890987654345678n
+const num = 23;
+// console.log(huge * num); you cant do math operations with bigInt
+// EXCEPTIONS
+// you can do Comparison Operations
+console.log(20n > 21);
+console.log(20n == 20);
+console.log(20n === 20);
+console.log(typeof 20n)
+
+console.log(huge + " is a really big Number :O");
+
+// Divisions
+console.log(10n / 3n);
+console.log(10 / 3);
 
