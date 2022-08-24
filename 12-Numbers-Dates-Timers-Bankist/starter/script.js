@@ -81,7 +81,7 @@ const inputClosePin = document.querySelector('.form__input--pin');
 /////////////////////////////////////////////////
 // Functions
 
-const formatMovementsDate = function (date) {
+const formatMovementsDate = function (date, locale) {
   const calcPassedDays = (smallDate, bigDate) => Math.round(Math.abs((bigDate - smallDate) / (1000 * 60 * 60 * 24)));
 
   const daysPassed = calcPassedDays(new Date(), date)
@@ -91,11 +91,11 @@ const formatMovementsDate = function (date) {
   if (daysPassed === 1) return "Yesterday";
   if (daysPassed <= 7) return `${daysPassed} days ago`;
   else {
-    const day = `${date.getDate()}`.padStart(2, 0);
-    const month = `${date.getMonth() + 1}`.padStart(2, 0);
-    const year = date.getFullYear();
-    return `${day}/${month}/${year}
-  `;
+    // const day = `${date.getDate()}`.padStart(2, 0);
+    // const month = `${date.getMonth() + 1}`.padStart(2, 0);
+    // const year = date.getFullYear();
+    // return `${day}/${month}/${year}`;
+    return new Intl.DateTimeFormat(locale).format(date);
   }
 }
 
@@ -107,7 +107,7 @@ const displayMovements = function (acc, sort = false) {
   movs.forEach(function (mov, i) {
     const type = mov > 0 ? 'deposit' : 'withdrawal';
     const date = new Date(acc.movementsDates[i]);
-    const displayDate = formatMovementsDate(date);
+    const displayDate = formatMovementsDate(date, acc.locale);
     const html = `
       <div class="movements__row">
         <div class="movements__type movements__type--${type}">${i + 1} ${type}</div>
@@ -189,13 +189,23 @@ btnLogin.addEventListener('click', function (e) {
     containerApp.style.opacity = 100;
     // current date
     const now = new Date();
-    const date = `${now.getDate()}`.padStart(2, 0);
-    const month = `${now.getMonth() + 1}`.padStart(2, 0);
-    const year = now.getFullYear();
-    const hour = now.getHours();
-    const minute = `${now.getMinutes()}`.padStart(2, 0);
+    const options = {
+      hour: 'numeric',
+      minute: 'numeric',
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric',
+      weekday: 'long'
+    }
+    const locale = currentAccount.locale;
+    labelDate.textContent = new Intl.DateTimeFormat(locale, options).format(now);
+    // const date = `${now.getDate()}`.padStart(2, 0);
+    // const month = `${now.getMonth() + 1}`.padStart(2, 0);
+    // const year = now.getFullYear();
+    // const hour = now.getHours();
+    // const minute = `${now.getMinutes()}`.padStart(2, 0);
 
-    labelDate.textContent = `${date}/${month}/${year}, ${hour}:${minute}`;
+    // labelDate.textContent = `${date}/${month}/${year}, ${hour}:${minute}`;
 
 
     // Clear input fields
@@ -507,6 +517,7 @@ console.log(future);
 
 // For More https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date
 */
+/*
 //////////////////////////
 // Operations With Dates
 //////////////////////////
@@ -514,8 +525,24 @@ console.log(future);
 const future = new Date(2037, 10, 19, 15, 23);
 console.log(Number(future));      // -> milliseconds
 
-
-
 // console.log(calcPassedDays(new Date(2037, 3, 14), new Date(2037, 3, 4)));
+*/
+/////////////////////////////
+//  Internationalizing Dates (Intl)
+/////////////////////////////
+// Experimenting API
+const options = {
+  hour: 'numeric',
+  minute: 'numeric',
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+  weekday: 'long'
+}
 
 
+labelBalance.addEventListener('click', function () {
+  const now = new Date();
+  const locale = navigator.language;
+  labelDate.textContent = new Intl.DateTimeFormat(locale, options).format(now)
+})
