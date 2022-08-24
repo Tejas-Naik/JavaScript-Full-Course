@@ -93,7 +93,7 @@ const displayMovements = function (movements, sort = false) {
       <div class="movements__row">
         <div class="movements__type movements__type--${type}">${i + 1
       } ${type}</div>
-        <div class="movements__value">${mov}€</div>
+        <div class="movements__value">${(mov.toFixed(2))}€</div>
       </div>
     `;
 
@@ -110,12 +110,12 @@ const calcDisplaySummary = function (acc) {
   const incomes = acc.movements
     .filter(mov => mov > 0)
     .reduce((acc, mov) => acc + mov, 0);
-  labelSumIn.textContent = `${incomes}€`;
+  labelSumIn.textContent = `${(incomes).toFixed(2)}€`;
 
   const out = acc.movements
     .filter(mov => mov < 0)
     .reduce((acc, mov) => acc + mov, 0);
-  labelSumOut.textContent = `${Math.abs(out)}€`;
+  labelSumOut.textContent = `${(Math.abs(out)).toFixed(2)}€`;
 
   const interest = acc.movements
     .filter(mov => mov > 0)
@@ -125,7 +125,7 @@ const calcDisplaySummary = function (acc) {
       return int >= 1;
     })
     .reduce((acc, int) => acc + int, 0);
-  labelSumInterest.textContent = `${interest}€`;
+  labelSumInterest.textContent = `${(interest).toFixed(2)}€`;
 };
 
 const createUsernames = function (accs) {
@@ -204,7 +204,7 @@ btnTransfer.addEventListener('click', function (e) {
 btnLoan.addEventListener('click', function (e) {
   e.preventDefault();
 
-  const amount = +inputLoanAmount.value;
+  const amount = Math.floor(inputLoanAmount.value);
 
   if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
     // Add movement
@@ -249,7 +249,7 @@ btnSort.addEventListener('click', function (e) {
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
-
+/*
 ///////////////////////////////////
 // Converting and Checking Numbers
 ///////////////////////////////////
@@ -289,3 +289,58 @@ console.log(Number.isFinite(23 / 0));
 // Number.isInteger -> checking if a value is an Integer
 console.log(Number.isInteger(23));
 console.log(Number.isInteger(23.0));
+*/
+
+/////////////////////////////////
+// Math & ROUNDING 
+/////////////////////////////////
+console.log(Math.sqrt(25));   // - square root
+console.log(25 ** (1 / 2));   // - Math.sqrt
+console.log(Math.cbrt(8));    // - cube root
+console.log(8 ** (1 / 3));    // 
+
+console.log(Math.max(1, 2, 3, 4, 5, 6, 7, 8, 9));   // returns maximum number
+console.log(Math.max(1, 2, 3, 4, 5, 6, 7, 8, '9'));   // returns maximum number
+console.log(Math.max(1, 2, 3, 4, 5, 6, 7, 8, '9px '));   // returns maximum number
+
+
+console.log(Math.min(1, 2, 3, 4, 5, 6, 7, 8, 9));   // returns minimum number
+// finding area of a circle = (PI * R)^2
+console.log(Math.PI * Number.parseFloat('10px') ** 2);
+
+// Random integer
+console.log(Math.random());           // 0-1
+console.log(Math.random() * 10);      // 0-10 multiply by any number as we want
+console.log(Math.trunc(Math.random() * 6) + 1);   // random dice roll
+
+const generateRandomNumber = function (min, max) {
+  // return Math.trunc(Math.random() * (max - min)) + 1 + min;
+  return Math.floor(Math.random() * (max - min)) + 1 + min;
+}
+console.log(generateRandomNumber(1, 6));
+
+// Rounding Integers
+
+// removes the things after decimal
+console.log(Math.trunc(23.111));
+console.log(Math.trunc(23.999));
+
+// This will try to make it round `O` taking to nearest 10.1 => 10.0 & 10.7 => 11;
+console.log(Math.round(23.111));
+console.log(Math.round(23.999));
+
+// This will ceil down the package by adding some stuff to make it complete // 23.1 => 24
+console.log(Math.ceil(23.111));
+console.log(Math.ceil(23.999));
+
+// cleans the floor and removes any extra dirt that is on there // 23.111 => 23
+console.log(Math.floor(23.111));
+console.log(Math.floor(23.999));
+
+// in negative numbers its better to use floor than trunc
+
+// Rounding floors - returns a string with however many of numbers you want after decimal
+console.log((2.787).toFixed(0))   // toFixed(numbersOfDecimalsToReturn)
+console.log((2.787).toFixed(2));
+console.log(+(2.787).toFixed(2));
+
