@@ -260,13 +260,15 @@ btnLoan.addEventListener('click', function (e) {
   const amount = Math.floor(inputLoanAmount.value);
 
   if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
-    // Add movement
-    currentAccount.movements.push(amount);
+    setTimeout(function () {
+      // Add movement
+      currentAccount.movements.push(amount);
 
-    // Add transfer date
-    currentAccount.movementsDates.push(new Date().toISOString())
-    // Update UI
-    updateUI(currentAccount);
+      // Add transfer date
+      currentAccount.movementsDates.push(new Date().toISOString())
+      // Update UI
+      updateUI(currentAccount);
+    }, 2500);
   }
   inputLoanAmount.value = '';
 });
@@ -577,3 +579,32 @@ console.log("UK ", new Intl.NumberFormat('en-GB', options).format(num));
 console.log("PT ", new Intl.NumberFormat('pt-PT', options).format(num));
 console.log("Browser ", new Intl.NumberFormat(navigator.language, options).format(num));
 */
+
+/////////////////////////////
+// setTimeOut && setInterval
+/////////////////////////////
+// setTimeOut => schedules a function to run after a time
+
+// setTimeOut() function takes 2arguements
+// setTimeOut(() => ..., timeInMs)
+// setTimeOut(() => cl("Your Pizza"), 3000)
+// this will print("Your PizzA")  AFTER 3 SECONDS
+// * TIP - this doesn't stop the compilation of the file it will keep running even after the setTimeOut() function is called
+
+// setTimeout(() => console.log("Here is your pizza 🍕"), 3000);
+// console.log('Waiting...');
+
+// If you want to pass args to a function you can do that after tha seconds
+const ingredients = ["spinach", "olives"];
+const pizzaTimer = setTimeout((ing1, ing2) => console.log(`Here is your pizza 🍕 with ${ing1}, ${ing2}`), 3000, ...ingredients);
+console.log('Waiting...');
+
+// to cancel the timer(setTimeOut) we can use clearTimeOut(timer)
+if (ingredients.includes('spinach')) clearTimeout(pizzaTimer)
+
+// SetInterval
+setInterval(() => {
+  const now = new Date();
+  console.log(now);
+}, 10000);
+
