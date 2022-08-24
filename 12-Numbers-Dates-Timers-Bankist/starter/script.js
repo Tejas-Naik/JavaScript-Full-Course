@@ -344,7 +344,7 @@ console.log((2.787).toFixed(0))   // toFixed(numbersOfDecimalsToReturn)
 console.log((2.787).toFixed(2));
 console.log(+(2.787).toFixed(2));
 */
-
+/*
 ///////////////////////
 // REMAINDER OPERATOR
 ///////////////////////
@@ -368,3 +368,23 @@ document.body.addEventListener('click', function () {
     }
   })
 })
+*/
+
+// Numeric Separators
+const diameterEarth = 287460000000;
+const diameter = 287_460_000_000;
+console.log(diameter);
+
+const price = 349_99;
+console.log(price);
+
+const transferFee1 = 15_00;
+const transferFee2 = 1_500;
+console.log(transferFee1);
+console.log(transferFee2);
+
+console.log(Number("1233"));
+console.log(Number("12_33"));
+console.log(parseInt("12_33"));
+
+
