@@ -16,14 +16,14 @@ const account1 = {
   pin: 1111,
 
   movementsDates: [
-    '2019-11-18T21:31:17.178Z',
-    '2019-12-23T07:42:02.383Z',
-    '2020-01-28T09:15:04.904Z',
-    '2020-04-01T10:17:24.185Z',
-    '2020-05-08T14:11:59.604Z',
-    '2020-05-27T17:01:17.194Z',
-    '2020-07-11T23:36:17.929Z',
-    '2020-07-12T10:51:36.790Z',
+    '2021-11-18T21:31:17.178Z',
+    '2021-12-23T07:42:02.383Z',
+    '2022-05-28T09:15:04.904Z',
+    '2022-06-01T10:17:24.185Z',
+    '2022-07-08T14:11:59.604Z',
+    '2022-07-27T17:01:17.194Z',
+    '2022-08-20T23:36:17.929Z',
+    '2022-08-23T10:51:36.790Z',
   ],
   currency: 'EUR',
   locale: 'pt-PT', // de-DE
@@ -81,6 +81,24 @@ const inputClosePin = document.querySelector('.form__input--pin');
 /////////////////////////////////////////////////
 // Functions
 
+const formatMovementsDate = function (date) {
+  const calcPassedDays = (smallDate, bigDate) => Math.round(Math.abs((bigDate - smallDate) / (1000 * 60 * 60 * 24)));
+
+  const daysPassed = calcPassedDays(new Date(), date)
+  console.log(daysPassed);
+
+  if (daysPassed === 0) return "Today";
+  if (daysPassed === 1) return "Yesterday";
+  if (daysPassed <= 7) return `${daysPassed} days ago`;
+  else {
+    const day = `${date.getDate()}`.padStart(2, 0);
+    const month = `${date.getMonth() + 1}`.padStart(2, 0);
+    const year = date.getFullYear();
+    return `${day}/${month}/${year}
+  `;
+  }
+}
+
 const displayMovements = function (acc, sort = false) {
   containerMovements.innerHTML = '';
   const movements = acc.movements;
@@ -88,13 +106,8 @@ const displayMovements = function (acc, sort = false) {
 
   movs.forEach(function (mov, i) {
     const type = mov > 0 ? 'deposit' : 'withdrawal';
-
     const date = new Date(acc.movementsDates[i]);
-    const day = `${date.getDate()}`.padStart(2, 0);
-    const month = `${date.getMonth() + 1}`.padStart(2, 0);
-    const year = date.getFullYear();
-    const displayDate = `${day}/${month}/${year}`;
-
+    const displayDate = formatMovementsDate(date);
     const html = `
       <div class="movements__row">
         <div class="movements__type movements__type--${type}">${i + 1} ${type}</div>
@@ -494,6 +507,15 @@ console.log(future);
 
 // For More https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date
 */
+//////////////////////////
+// Operations With Dates
+//////////////////////////
 
+const future = new Date(2037, 10, 19, 15, 23);
+console.log(Number(future));      // -> milliseconds
+
+
+
+// console.log(calcPassedDays(new Date(2037, 3, 14), new Date(2037, 3, 4)));
 
 
