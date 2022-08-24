@@ -249,3 +249,43 @@ btnSort.addEventListener('click', function (e) {
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
+
+///////////////////////////////////
+// Converting and Checking Numbers
+///////////////////////////////////
+
+// All numbers are represented as floats in Javascript = a = 2; (a = 2.0); a = 1.2; (a = 1.2);
+console.log(23 === 23.0);
+
+// base 10 -> 0-9;
+// base 2 -> 0 1;
+console.log(0.1 + 0.2);
+console.log(0.1 + 0.2 === 0.3);   // error in js
+// Converting to number
+console.log(Number('7'));
+console.log(+"7");    // 7 because of type coersion
+
+// Parsing  -   by parsing you can convert strings that are starting from a number to a string
+console.log(Number.parseInt('30px'));   // 30
+console.log(Number.parseInt('e23', 10));    // NaN
+
+console.log(Number.parseInt("2.5rem")); // 2;
+console.log(Number.parseFloat("2.5rem")); // 2.5;
+// console.log(parseFloat("2.5rem")); // 2.5; you can call without Number.
+
+// Number.isNaN(); - checking if value is a NaN
+console.log(Number.isNaN(20));
+console.log(Number.isNaN("20"));
+console.log(Number.isNaN(+"20X"));
+console.log(Number.isNaN(10 / 0));    // oo Infinite
+
+// Number.isFinite(); - checking if value is number/!number
+console.log(Number.isFinite(20));
+console.log(Number.isFinite(20.2));
+console.log(Number.isFinite("20"));
+console.log(Number.isFinite(+"20X"));
+console.log(Number.isFinite(23 / 0));
+
+// Number.isInteger -> checking if a value is an Integer
+console.log(Number.isInteger(23));
+console.log(Number.isInteger(23.0));
