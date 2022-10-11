@@ -86,3 +86,46 @@ document.querySelector(".btn--close-cookie").addEventListener("click", function 
   message.remove();
 });
 
+// STYLES
+message.style.backgroundColor = "#37383d";
+message.style.width = "100%";
+
+console.log(getComputedStyle(message));
+console.log(getComputedStyle(message).color);
+console.log(getComputedStyle(message).height);    // 40px
+
+message.style.height = Number.parseInt(getComputedStyle(message).height, 10) + 40 + "px";
+
+// CSS Variables
+// document.documentElement.style.setProperty('--color-primary', 'orangered');
+
+
+// ATTRIBUTES 
+const logo = document.querySelector('.nav__logo');
+console.log(logo.alt);
+console.log(logo.src);
+console.log(logo.className);
+
+// non-standard
+console.log(logo.designer);
+console.log(logo.getAttribute('designer'));
+
+// setting the attributes
+logo.alt = "Beautiful minimalist logo"
+console.log(logo.setAttribute('company', "Bankist"));
+
+const btnShowModalLink = document.querySelector('.btn--show-modal');
+console.log(btnShowModalLink.href);
+console.log(btnShowModalLink.getAttribute('href'));
+
+// data attributes
+console.log(logo.dataset.versionNumber);
+
+// CLASSES
+logo.classList.add("test");
+logo.classList.remove("test");
+logo.classList.toggle("test");
+logo.classList.contains("test");
+
+console.log(logo.classList);
+
