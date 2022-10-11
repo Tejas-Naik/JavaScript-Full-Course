@@ -166,6 +166,7 @@ btnScrollTo.addEventListener("click", function (e) {
   section1.scrollIntoView({ behavior: "smooth" })
 })
 
+/*
 // Types of Events and Handlers
 // mouse enter event
 const h1 = document.querySelector("h1");
@@ -186,4 +187,51 @@ h1.addEventListener("mouseenter", changeh1)
 // h1.onmouseenter = changeh1;
 // h1.onclick = changeh1;
 // h1.onmouseover = changeh1;
+*/
 
+
+// Event Propogation : Bubbling and Capturing
+
+/* when you have an event listener at an anchor tag (DOCUMENT=>html=>body=>section=>p=>a)
+and event happened at `a` then that eventHandler is created at DOCUMENT and it comes down
+to all elements (DOCUMENT to HTML to BODY to SECTION to P to TARGER(A))
+
+so if you have same event handler at 2 places in the inheritence(DOCUMENT=>html=>body=>section=>p=>a)
+then that is going to execute 2 times once for a and another one for the el
+*/
+
+const randInt = (min, max) => Math.floor(Math.random() * (max - min + 1) + min);
+const randColor = () => `rgb(${randInt(0, 255)}, ${randInt(0, 255)}, ${randInt(0, 255)})`
+console.log(randColor(0, 255));
+
+document
+  .querySelector('.nav__link')
+  .addEventListener("click", function (e) {
+    this.style.backgroundColor = randColor(0, 255);
+    console.log("LINK", e.target, e.currentTarget);
+    console.log(this === e.currentTarget);
+
+    // Stop Propogation
+    // e.stopPropagation();
+  })
+
+document
+  .querySelector('.nav__links')
+  .addEventListener("click", function (e) {
+    this.style.backgroundColor = randColor(0, 255);
+    console.log("CONTAINER", e.target, e.currentTarget)
+  })
+
+// document
+//   .querySelector('.nav__links')
+//   .addEventListener("click", function (e) {
+//     this.style.backgroundColor = randColor(0, 255);
+//     console.log("CONTAINER", e.target, e.currentTarget)
+//   }, true)    // true means handle the events in other order parent to child not child to parent
+
+document
+  .querySelector('.nav')
+  .addEventListener("click", function (e) {
+    this.style.backgroundColor = randColor(0, 255);
+    console.log("NAVBAR", e.target, e.currentTarget)
+  })
