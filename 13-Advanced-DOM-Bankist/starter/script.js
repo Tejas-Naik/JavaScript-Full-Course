@@ -37,7 +37,7 @@ document.addEventListener('keydown', function (e) {
 // How DOM works?? BTS
 ////////////////////////////////////
 // DOM is an interface between JS Code and the browser
-// DOM is an API(complex) 
+// DOM creates DOM Tree for every HTML Document
+// DOM is an API(complex) -> .addEventListener(), .querySelector(), .createElement(), .innerHTML etc... 
 // WALCH LECTURE ON Udemy
-
 
