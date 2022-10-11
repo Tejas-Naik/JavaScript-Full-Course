@@ -1,12 +1,14 @@
 'use strict';
 
-///////////////////////////////////////
-// Modal window
-
 const modal = document.querySelector('.modal');
 const overlay = document.querySelector('.overlay');
 const btnCloseModal = document.querySelector('.btn--close-modal');
 const btnsOpenModal = document.querySelectorAll('.btn--show-modal');
+const btnScrollTo = document.querySelector(".btn--scroll-to");
+const section1 = document.getElementById("section--1");
+
+///////////////////////////////////////
+// Modal window
 
 const openModal = function (e) {
   e.preventDefault();
@@ -32,6 +34,66 @@ document.addEventListener('keydown', function (e) {
     closeModal();
   }
 });
+
+// Implementing Smooth Scrolling
+btnScrollTo.addEventListener("click", function (e) {
+  const s1coord = section1.getBoundingClientRect();
+  console.log(s1coord);
+
+  console.log(e.target.getBoundingClientRect());
+
+  console.log('Current scroll (X/Y)', window.pageXOffset, window.pageYOffset);
+
+  console.log(
+    'height/width viewport',
+    document.documentElement.clientHeight,
+    document.documentElement.clientWidth
+  );
+
+  // Scrolling
+  // window.scrollTo(
+  //   s1coord.left + window.pageXOffset,
+  //   s1coord.top + window.pageYOffset
+  // );
+
+  // window.scrollTo({
+  //   left: s1coord.left + window.pageXOffset,
+  //   top: s1coord.top + window.pageYOffset,
+  //   behavior: "smooth",
+  // });
+
+  section1.scrollIntoView({ behavior: "smooth" })
+})
+
+
+// Event Delegation : Implementing Page Navigation
+// #1 not so good in performance because it creates the callbackFn for all elements
+// document
+//   .querySelectorAll(".nav__link")
+//   .forEach(function (el) {
+//     el.addEventListener("click", function (e) {
+//       e.preventDefault();
+//       const id = this.getAttribute("href");
+//       console.log(id);
+//       document.querySelector(id).scrollIntoView({ behavior: "smooth" });
+//     });
+//   })
+
+// Event Delegation
+// 1. add event listener to a parent container 
+// 2. determine what element originated the event (target)
+document
+  .querySelector(".nav__links")
+  .addEventListener("click", function (e) {
+    e.preventDefault();
+    // Matching strategy
+    if (e.target.classList.contains("nav__link")) {
+      const id = e.target.getAttribute("href");
+      console.log(id);
+      document.querySelector(id).scrollIntoView({ behavior: "smooth" });
+    }
+  })
+
 /*
 ////////////////////////////////////
 // LECTURES
@@ -131,42 +193,7 @@ logo.classList.toggle("test");
 logo.classList.contains("test");
 
 console.log(logo.classList);
-*/
 
-// Implementing Smooth Scrolling
-const btnScrollTo = document.querySelector(".btn--scroll-to");
-const section1 = document.getElementById("section--1");
-
-btnScrollTo.addEventListener("click", function (e) {
-  const s1coord = section1.getBoundingClientRect();
-  console.log(s1coord);
-
-  console.log(e.target.getBoundingClientRect());
-
-  console.log('Current scroll (X/Y)', window.pageXOffset, window.pageYOffset);
-
-  console.log(
-    'height/width viewport',
-    document.documentElement.clientHeight,
-    document.documentElement.clientWidth
-  );
-
-  // Scrolling
-  // window.scrollTo(
-  //   s1coord.left + window.pageXOffset,
-  //   s1coord.top + window.pageYOffset
-  // );
-
-  // window.scrollTo({
-  //   left: s1coord.left + window.pageXOffset,
-  //   top: s1coord.top + window.pageYOffset,
-  //   behavior: "smooth",
-  // });
-
-  section1.scrollIntoView({ behavior: "smooth" })
-})
-
-/*
 // Types of Events and Handlers
 // mouse enter event
 const h1 = document.querySelector("h1");
@@ -189,7 +216,7 @@ h1.addEventListener("mouseenter", changeh1)
 // h1.onmouseover = changeh1;
 */
 
-
+/*
 // Event Propogation : Bubbling and Capturing
 
 /* when you have an event listener at an anchor tag (DOCUMENT=>html=>body=>section=>p=>a)
@@ -198,7 +225,7 @@ to all elements (DOCUMENT to HTML to BODY to SECTION to P to TARGER(A))
 
 so if you have same event handler at 2 places in the inheritence(DOCUMENT=>html=>body=>section=>p=>a)
 then that is going to execute 2 times once for a and another one for the el
-*/
+*
 
 const randInt = (min, max) => Math.floor(Math.random() * (max - min + 1) + min);
 const randColor = () => `rgb(${randInt(0, 255)}, ${randInt(0, 255)}, ${randInt(0, 255)})`
@@ -222,7 +249,7 @@ document
     console.log("CONTAINER", e.target, e.currentTarget)
   })
 
-// document
+  // document
 //   .querySelector('.nav__links')
 //   .addEventListener("click", function (e) {
 //     this.style.backgroundColor = randColor(0, 255);
@@ -230,8 +257,41 @@ document
 //   }, true)    // true means handle the events in other order parent to child not child to parent
 
 document
-  .querySelector('.nav')
-  .addEventListener("click", function (e) {
-    this.style.backgroundColor = randColor(0, 255);
-    console.log("NAVBAR", e.target, e.currentTarget)
-  })
+.querySelector('.nav')
+.addEventListener("click", function (e) {
+  this.style.backgroundColor = randColor(0, 255);
+  console.log("NAVBAR", e.target, e.currentTarget)
+})
+
+*/
+
+// DOM Traversing
+const h1 = document.querySelector("h1");
+
+// Going Downwards : child
+console.log(h1.querySelectorAll(".highlight"));
+console.log(h1.childNodes);
+console.log(h1.children);
+
+h1.firstElementChild.style.color = "white";
+h1.lastElementChild.style.color = "orangered";
+
+// Going Upwards
+console.log(h1.parentNode);
+console.log(h1.parentElement);
+
+h1.closest('.header').style.background = 'var(--gradient-secondary)'
+
+h1.closest('h1').style.background = 'var(--gradient-primary)'
+
+// Sideways : Siblings
+console.log(h1.previousElementSibling);
+console.log(h1.nextElementSibling);
+
+console.log(h1.previousSibling);
+console.log(h1.nextSibling);
+
+console.log(h1.parentElement.children);
+[...h1.parentElement.children].forEach(function (el) {
+  if (el !== h1) el.style.transform = 'scale(.5)'
+})
