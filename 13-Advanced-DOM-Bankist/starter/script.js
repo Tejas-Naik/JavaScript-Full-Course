@@ -32,13 +32,16 @@ document.addEventListener('keydown', function (e) {
     closeModal();
   }
 });
+/*
+////////////////////////////////////
+// LECTURES
 
 ////////////////////////////////////
 // How DOM works?? BTS
 ////////////////////////////////////
 // DOM is an interface between JS Code and the browser
 // DOM creates DOM Tree for every HTML Document
-// DOM is an API(complex) -> .addEventListener(), .querySelector(), .createElement(), .innerHTML etc... 
+// DOM is an API(complex) -> .addEventListener(), .querySelector(), .createElement(), .innerHTML etc...
 // WALCH LECTURE ON Udemy
 
 //////////////////////////////////////////
@@ -100,7 +103,7 @@ message.style.height = Number.parseInt(getComputedStyle(message).height, 10) + 4
 // document.documentElement.style.setProperty('--color-primary', 'orangered');
 
 
-// ATTRIBUTES 
+// ATTRIBUTES
 const logo = document.querySelector('.nav__logo');
 console.log(logo.alt);
 console.log(logo.src);
@@ -128,4 +131,37 @@ logo.classList.toggle("test");
 logo.classList.contains("test");
 
 console.log(logo.classList);
+*/
 
+// Implementing Smooth Scrolling
+const btnScrollTo = document.querySelector(".btn--scroll-to");
+const section1 = document.getElementById("section--1");
+
+btnScrollTo.addEventListener("click", function (e) {
+  const s1coord = section1.getBoundingClientRect();
+  console.log(s1coord);
+
+  console.log(e.target.getBoundingClientRect());
+
+  console.log('Current scroll (X/Y)', window.pageXOffset, window.pageYOffset);
+
+  console.log(
+    'height/width viewport',
+    document.documentElement.clientHeight,
+    document.documentElement.clientWidth
+  );
+
+  // Scrolling
+  // window.scrollTo(
+  //   s1coord.left + window.pageXOffset,
+  //   s1coord.top + window.pageYOffset
+  // );
+
+  // window.scrollTo({
+  //   left: s1coord.left + window.pageXOffset,
+  //   top: s1coord.top + window.pageYOffset,
+  //   behavior: "smooth",
+  // });
+
+  section1.scrollIntoView({ behavior: "smooth" })
+})
