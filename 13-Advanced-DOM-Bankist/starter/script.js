@@ -165,3 +165,25 @@ btnScrollTo.addEventListener("click", function (e) {
 
   section1.scrollIntoView({ behavior: "smooth" })
 })
+
+// Types of Events and Handlers
+// mouse enter event
+const h1 = document.querySelector("h1");
+
+const changeh1 = function (e) {
+  h1.style.color = "orangered";
+
+  // removing an event listener once after its executed
+  h1.removeEventListener('mouseenter', changeh1);
+};
+
+h1.addEventListener("mouseenter", changeh1)
+
+// removing the event listener by time
+// setTimeout(() => h1.removeEventListener('click', changeh1), 3000);
+
+// every event has its own methods
+// h1.onmouseenter = changeh1;
+// h1.onclick = changeh1;
+// h1.onmouseover = changeh1;
+
