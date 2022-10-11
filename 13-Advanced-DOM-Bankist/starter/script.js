@@ -34,7 +34,7 @@ document.addEventListener('keydown', function (e) {
     closeModal();
   }
 });
-
+/////////////////////////////////
 // Implementing Smooth Scrolling
 btnScrollTo.addEventListener("click", function (e) {
   const s1coord = section1.getBoundingClientRect();
@@ -65,7 +65,7 @@ btnScrollTo.addEventListener("click", function (e) {
   section1.scrollIntoView({ behavior: "smooth" })
 })
 
-
+////////////////////////////////////////////////
 // Event Delegation : Implementing Page Navigation
 // #1 not so good in performance because it creates the callbackFn for all elements
 // document
@@ -93,6 +93,30 @@ document
       document.querySelector(id).scrollIntoView({ behavior: "smooth" });
     }
   })
+
+// Tabbed component
+const tabs = document.querySelectorAll(".operations__tab");
+const tabsContainer = document.querySelector(".operations__tab-container");
+const tabsContent = document.querySelectorAll(".operations__content");
+
+tabsContainer.addEventListener("click", function (e) {
+  const clicked = e.target.closest(".operations__tab");
+  // console.log(clicked);
+
+  // Guard Clause
+  if (!clicked) return;
+
+  // Active tab
+  tabs.forEach(t => t.classList.remove("operations__tab--active"));
+  clicked.classList.add("operations__tab--active");
+
+  // Active content area
+  const currentTab = document.querySelector(`.operations__content--${clicked.getAttribute("data-tab")}`);
+  // console.log(currentTab);
+  tabsContent.forEach(tContent => tContent.classList.remove("operations__content--active"));
+  currentTab.classList.add("operations__content--active")
+
+})
 
 /*
 ////////////////////////////////////
@@ -264,7 +288,7 @@ document
 })
 
 */
-
+/*
 // DOM Traversing
 const h1 = document.querySelector("h1");
 
@@ -295,3 +319,5 @@ console.log(h1.parentElement.children);
 [...h1.parentElement.children].forEach(function (el) {
   if (el !== h1) el.style.transform = 'scale(.5)'
 })
+*/
+
