@@ -63,6 +63,7 @@ const Person = function (firstName, birthYear) {
 3. {} is linked to a prototype
 4. function automatically return {}
 */
+
 const tejas = new Person("Tejas", 2005);
 console.log(tejas);
 
@@ -76,5 +77,26 @@ const jay = "Jay";
 console.log(tejas instanceof Person);
 console.log(jay instanceof Person);
 
-// Calling methods
-console.log(tejas.calcAge());
+// Prototypes
+console.log(Person.prototype);
+Person.prototype.calcAge = function () {
+    console.log(2022 - this.birthYear);
+}
+
+tejas.calcAge();
+matilda.calcAge();
+
+// checking which function we have in prototype
+console.log(tejas.__proto__);
+console.log(tejas.__proto__ === Person.prototype);
+
+console.log(Person.prototype.isPrototypeOf(tejas));
+console.log(Person.prototype.isPrototypeOf(matilda));
+console.log(Person.prototype.isPrototypeOf(Person));
+
+Person.prototype.species = "Homo Sapiens";
+console.log(tejas.species, matilda.species);
+
+// hasOwnProperty = defined when the function is created.
+console.log(tejas.hasOwnProperty('firstName'));
+console.log(tejas.hasOwnProperty('species'));
