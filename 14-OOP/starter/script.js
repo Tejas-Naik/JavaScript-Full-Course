@@ -29,3 +29,18 @@ How do we design Classes?
             --> (Parent[login-method]) --> Child[login-method] - new login method.
 
 */
+
+/*
+= OOP in JavaScript
+- In classical OOP we have classes to create Instances.
+- We inherit from the class
+
+- In traditional OOP we have Prototypes to create new Objects/classes
+- We inherit from prototype to create new objects --> prototypal inheritance.
+
+=3 ways of implementing Prototypal Inheritance
+    1. Constructor Functions
+    2. ES6 Classes
+    3. Object.create()
+
+*/
