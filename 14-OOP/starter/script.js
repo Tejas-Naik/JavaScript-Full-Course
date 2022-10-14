@@ -100,3 +100,55 @@ console.log(tejas.species, matilda.species);
 // hasOwnProperty = defined when the function is created.
 console.log(tejas.hasOwnProperty('firstName'));
 console.log(tejas.hasOwnProperty('species'));
+
+/*
+inheritance - > jonas object to Persom.prototype
+object.prototype
+jonas -> jonas__proto__ -> person.prototype-> object.prototype
+
+*/
+
+// Prototypal Inheritance on Built-in Objects.
+console.log(tejas.__proto__);
+// Object.prototype -> top of the prototype chain
+console.log(tejas.__proto__.__proto__);
+console.log(tejas.__proto__.__proto__.__proto__);
+
+const arr = [3, 5, 3, 3, 6, 7, 1, 5, 0];
+console.log(arr.__proto__);
+console.log(arr.__proto__ === Array.prototype);
+console.log(arr.__proto__.__proto__);
+console.log(arr.__proto__.__proto__.__proto__);
+
+// Creating new methods on the array
+Array.prototype.unique = function () {
+    return [...new Set(this)];
+}
+
+console.log([1, 2, 3, 4, 1, 2, 3, 4, 1].unique());
+
+const h1 = document.querySelector("h1");
+console.log(h1.__proto__);
+
+console.dir(x => x + 1);
+
+// Coding Challenge #1
+const Car = function (make, speed) {
+    this.make = make;
+    this.speed = speed;
+}
+
+Car.prototype.accelerate = function () {
+    this.speed += 10;
+    console.log(`${this.speed}km/h`);
+}
+
+const BMW = new Car("BMW", 120);
+const Mercedes = new Car("Mercedes", 95);
+
+BMW.accelerate();
+BMW.accelerate();
+BMW.accelerate();
+Mercedes.accelerate();
+Mercedes.accelerate();
+Mercedes.accelerate();
