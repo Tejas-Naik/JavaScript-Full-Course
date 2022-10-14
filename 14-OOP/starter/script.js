@@ -3,7 +3,7 @@
 /*
 What is OOP?
 - OOP is a programming paradigm(style) based on concept of objects.
-- We use ibjects to model (describe) real-world or abstract features.
+- We use objects to model (describe) real-world or abstract features.
 - Objects may contain data(properties) and code(methods).
 - in OOP, objects are self-contained pieces/blocks of code.
 - Objects are building blocks of applications, and interact with one another
@@ -44,3 +44,37 @@ How do we design Classes?
     3. Object.create()
 
 */
+
+// Constructor Functions and the `new` operator.
+const Person = function (firstName, birthYear) {
+    // Instance properties
+    this.firstName = firstName;
+    this.birthYear = birthYear;
+
+    // Never do this - because it creates this object for every created obj
+    // this.calcAge() = function () {
+    //     console.log(2022 - this.birthYear);
+    // }
+};
+
+/*
+1. New {} is created.
+2. function is called, this is = {}
+3. {} is linked to a prototype
+4. function automatically return {}
+*/
+const tejas = new Person("Tejas", 2005);
+console.log(tejas);
+
+const matilda = new Person("Matilda", 1991);
+const jack = new Person("Jack", 1976);
+
+console.log(matilda, jack);
+const jay = "Jay";
+
+// Checking if is instance
+console.log(tejas instanceof Person);
+console.log(jay instanceof Person);
+
+// Calling methods
+console.log(tejas.calcAge());
