@@ -162,8 +162,8 @@ Mercedes.brake();
 Mercedes.accelerate();
 
 */
-/**/
-
+/*
+*/
 // ES6 Classes
 
 // class expression
@@ -197,6 +197,11 @@ class PersonCl {
     get fullName() {
         return this._fullName;
     }
+
+    // Static Methods (only on original not inherits)
+    static hey() {
+        console.log("Hey there 👋");
+    }
 }
 
 const jessica = new PersonCl("Jessica Davis", 1996);
@@ -209,7 +214,7 @@ console.log(jessica.__proto__ === PersonCl.prototype);
 //     console.log(`Hii, ${this.firstName}`);
 // }
 jessica.greet();
-
+PersonCl.hey();
 // 1. Classes are not hoisted (cant call before declaration);
 // 2. Classes are also first-class citizens (pass & return from functions)
 // 3. Classes are executed in strict mode;
@@ -238,4 +243,10 @@ console.log(account.latest);
 // Setting a new value as a property
 account.latest = 50;
 console.log(account.movements);
+
+
+// Static Methods
+console.log(Array.from(document.querySelectorAll("h1")));
+// console.log([1, 2, 3].from());      // from is not a function
+// Array.from is a function that is attached to the constructor of the Array Object 
 
