@@ -559,10 +559,12 @@ class Account {
 
     deposit(mov) {
         this.#movements.push(mov);
+        return this;
     }
 
     withdraw(mov) {
         this.deposit(-mov);
+        return this;
     }
 
     requestLoan(val) {
@@ -571,11 +573,16 @@ class Account {
             this.deposit(val);
             console.log("Loan Approved");
         }
+        return this;
     }
     // 4. Private Methods
     // #approveLoan(val) {
     _approveLoan(val) {
         return true;
+    }
+    // Static
+    static helper() {
+        console.log("Helper");
     }
 }
 const acc1 = new Account("Jonas", "EUR", 1111);
@@ -586,6 +593,14 @@ acc1.requestLoan(1000);
 console.log(acc1);
 console.log(acc1.getMovements());
 
+Account.helper();
 // console.log(acc1.#movements);
 // console.log(acc1.#pin);
 // console.log(acc1.#approveLoan);
+
+
+// Chaining Methods
+// Simply return this from the methods in the class
+acc1.deposit(300).deposit(500).withdraw(35).requestLoan(25000).withdraw(4000);
+
+console.log(acc1.getMovements());
