@@ -250,7 +250,7 @@ console.log(Array.from(document.querySelectorAll("h1")));
 // console.log([1, 2, 3].from());      // from is not a function
 // Array.from is a function that is attached to the constructor of the Array Object
 */
-
+/*
 // Object.create() - the third way to create an object/class
 // No setting prototype, no constructor function and no 'new' keyword
 
@@ -276,4 +276,39 @@ console.log(steven.__proto__ === PersonProto);
 const sarah = Object.create(PersonProto);
 sarah.init("Sarah", 1979);
 sarah.calcAge()
+*/
 
+// Coding Challenge #2 
+class Car {
+    constructor(make, speed) {
+        this.make = make,
+            this.speed = speed
+    }
+
+    accelerate() {
+        console.log(this.speed += 10);
+    }
+
+    brake() {
+        console.log(this.speed -= 5);
+    }
+
+    get speedUS() {
+        return this.speed / 1.6;
+    }
+
+    set speedUS(speed) {
+        this.speed = speed * 1.6;
+    }
+
+}
+
+const bmw = new Car("BMW", 120);
+const mercedese = new Car("Mercedese", 95);
+
+console.log(bmw.speedUS)
+bmw.accelerate()
+mercedese.accelerate()
+// setter
+bmw.speedUS = 50;
+console.log(bmw);
