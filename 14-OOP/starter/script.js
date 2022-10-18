@@ -254,7 +254,7 @@ console.log(Array.from(document.querySelectorAll("h1")));
 // Object.create() - the third way to create an object/class
 // No setting prototype, no constructor function and no 'new' keyword
 
-// creating a prototype function 
+// creating a prototype function
 const PersonProto = {
     calcAge() {
         console.log(2022 - this.birthYear);
@@ -277,8 +277,8 @@ const sarah = Object.create(PersonProto);
 sarah.init("Sarah", 1979);
 sarah.calcAge()
 */
-
-// Coding Challenge #2 
+/*
+// Coding Challenge #2
 class Car {
     constructor(make, speed) {
         this.make = make,
@@ -312,3 +312,41 @@ mercedese.accelerate()
 // setter
 bmw.speedUS = 50;
 console.log(bmw);
+*/
+// Inheritance between "Classes"
+const Person = function (firstName, birthYear) {
+    this.firstName = firstName;
+    this.birthYear = birthYear;
+}
+
+Person.prototype.calcAge = function () {
+    console.log(2022 - this.birthYear);
+};
+
+const Student = function (firstName, birthYear, course) {
+    Person.call(this, firstName, birthYear);
+    this.course = course;
+}
+// Linking Prototype
+// Student.prototype = Person.prototype;
+Student.prototype = Object.create(Person.prototype);
+
+Student.prototype.introduce = function () {
+    console.log(`I am ${this.firstName}. I study ${this.course}.`);
+}
+
+const mike = new Student("Mike", 2005, "Computer Science")
+mike.introduce();
+mike.calcAge()
+
+console.log(mike.__proto__);
+console.log(mike.__proto__.__proto__);
+console.log(mike.__proto__.__proto__.__proto__);
+console.log(mike.__proto__.__proto__.__proto__.__proto__);
+
+console.log(mike instanceof Person);
+console.log(mike instanceof Student);
+console.log(mike instanceof Object);
+
+Student.prototype.constructor = Student;
+console.dir(Student.prototype.constructor)
