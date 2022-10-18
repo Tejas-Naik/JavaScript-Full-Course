@@ -163,7 +163,7 @@ Mercedes.accelerate();
 
 */
 /*
-*/
+
 // ES6 Classes
 
 // class expression
@@ -248,5 +248,32 @@ console.log(account.movements);
 // Static Methods
 console.log(Array.from(document.querySelectorAll("h1")));
 // console.log([1, 2, 3].from());      // from is not a function
-// Array.from is a function that is attached to the constructor of the Array Object 
+// Array.from is a function that is attached to the constructor of the Array Object
+*/
+
+// Object.create() - the third way to create an object/class
+// No setting prototype, no constructor function and no 'new' keyword
+
+// creating a prototype function 
+const PersonProto = {
+    calcAge() {
+        console.log(2022 - this.birthYear);
+    },
+
+    init(firstName, birthYear) {
+        this.firstName = firstName;
+        this.birthYear = birthYear;
+    }
+}
+
+const steven = Object.create(PersonProto);
+steven.name = "Tejas";
+steven.birthYear = 2005;
+steven.calcAge();
+
+console.log(steven.__proto__ === PersonProto);
+
+const sarah = Object.create(PersonProto);
+sarah.init("Sarah", 1979);
+sarah.calcAge()
 
