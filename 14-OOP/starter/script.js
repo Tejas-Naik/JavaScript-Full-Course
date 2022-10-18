@@ -162,15 +162,17 @@ Mercedes.brake();
 Mercedes.accelerate();
 
 */
-// ES6 Classes 
+/**/
 
-// class expression 
+// ES6 Classes
+
+// class expression
 // const PersonCl = class= {};
 
 // class declaration
 class PersonCl {
-    constructor(firstName, birthYear) {
-        this.firstName = firstName;
+    constructor(fullName, birthYear) {
+        this.fullName = fullName;
         this.birthYear = birthYear;
     };
 
@@ -178,12 +180,26 @@ class PersonCl {
     calcAge() {
         console.log(2022 - this.birthYear);
     }   //  no commas between methods
+
     greet() {
-        console.log(`Hii, ${this.firstName}`);
+        console.log(`Hii, ${this.fullName}`);
+    }
+
+    get age() {
+        return 2022 - this.birthYear;
+    }
+
+    // Setting a property that already exists we also use getter
+    set fullName(name) {
+        if (name.includes(" ")) this._fullName = name;
+        else alert(`${name} is not a full name`)
+    }
+    get fullName() {
+        return this._fullName;
     }
 }
 
-const jessica = new PersonCl("Jessica", 1996);
+const jessica = new PersonCl("Jessica Davis", 1996);
 console.log(jessica.__proto__);
 jessica.calcAge();
 
@@ -199,3 +215,27 @@ jessica.greet();
 // 3. Classes are executed in strict mode;
 
 // you can use Contructor functions / classes as per your preference.
+// const walter = new PersonCl("Walter", 1996);
+
+// Setters and Getters
+const account = {
+    owner: "Jonas",
+    movements: [1000, -200, 450, 221, -100, 300],
+
+    // `get` = getter
+    get latest() {
+        return this.movements.at(-1);
+    },
+
+    set latest(mov) {
+        this.movements.push(mov)
+    }
+};
+
+// We have to use getter as a property not a method
+console.log(account.latest);
+
+// Setting a new value as a property
+account.latest = 50;
+console.log(account.movements);
+
