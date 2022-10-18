@@ -449,8 +449,8 @@ const martha = new StudentCl("Martha Jones", 2012, "Computer Science");
 martha.introduce();
 martha.calcAge();
 */
+/*
 // Inheritance between classes : Object.create()
-
 const PersonProto = {
     calcAge() {
         console.log(2022 - this.birthYear);
@@ -479,4 +479,42 @@ const jay = Object.create(StudentProto);
 jay.init("Jay", 2010, "Computer Science");
 jay.introduce();
 jay.calcAge();
+*/
+// Another Class Example
+class Account {
+    constructor(owner, currency, pin) {
+        this.owner = owner;
+        this.currency = currency;
+        this.pin = pin;
+        this.movements = [];
+        this.locale = navigator.language;
 
+        console.log(`Thank you for opening an account ${this.owner}`)
+    }
+
+    // Public Interface
+    deposit(mov) {
+        this.movements.push(mov);
+    }
+
+    withdraw(mov) {
+        this.deposit(-mov);
+    }
+
+    approveLoan(val) {
+        return true;
+    }
+
+    requestLoan(val) {
+        if (this.approveLoan(val)) {
+            this.deposit(val);
+            console.log("Loan Approved");
+        }
+    }
+}
+const acc1 = new Account("Jonas", "EUR", 1111);
+acc1.deposit(270);
+acc1.withdraw(140);
+acc1.requestLoan(1000);
+
+console.log(acc1);
