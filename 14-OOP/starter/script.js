@@ -44,7 +44,7 @@ How do we design Classes?
     3. Object.create()
 
 */
-
+/*
 // Constructor Functions and the `new` operator.
 const Person = function (firstName, birthYear) {
     // Instance properties
@@ -57,12 +57,12 @@ const Person = function (firstName, birthYear) {
     // }
 };
 
-/*
-1. New {} is created.
-2. function is called, this is = {}
-3. {} is linked to a prototype
-4. function automatically return {}
-*/
+//
+// 1. New {} is created.
+// 2. function is called, .this = {}
+// 3. {} is linked to a prototype
+// 4. function automatically return {}
+//
 
 const tejas = new Person("Tejas", 2005);
 console.log(tejas);
@@ -101,12 +101,12 @@ console.log(tejas.species, matilda.species);
 console.log(tejas.hasOwnProperty('firstName'));
 console.log(tejas.hasOwnProperty('species'));
 
-/*
-inheritance - > jonas object to Persom.prototype
-object.prototype
-jonas -> jonas__proto__ -> person.prototype-> object.prototype
+//
+// inheritance - > jonas object to Persom.prototype
+// object.prototype
+// jonas -> jonas__proto__ -> person.prototype-> object.prototype
 
-*/
+//
 
 // Prototypal Inheritance on Built-in Objects.
 console.log(tejas.__proto__);
@@ -142,6 +142,10 @@ Car.prototype.accelerate = function () {
     this.speed += 10;
     console.log(`${this.speed}km/h`);
 }
+Car.prototype.brake = function () {
+    this.speed -= 5;
+    console.log(`${this.speed}km/h`);
+}
 
 const BMW = new Car("BMW", 120);
 const Mercedes = new Car("Mercedes", 95);
@@ -149,6 +153,49 @@ const Mercedes = new Car("Mercedes", 95);
 BMW.accelerate();
 BMW.accelerate();
 BMW.accelerate();
+BMW.brake();
+BMW.brake();
+
 Mercedes.accelerate();
 Mercedes.accelerate();
+Mercedes.brake();
 Mercedes.accelerate();
+
+*/
+// ES6 Classes 
+
+// class expression 
+// const PersonCl = class= {};
+
+// class declaration
+class PersonCl {
+    constructor(firstName, birthYear) {
+        this.firstName = firstName;
+        this.birthYear = birthYear;
+    };
+
+    // Setting prototypes
+    calcAge() {
+        console.log(2022 - this.birthYear);
+    }   //  no commas between methods
+    greet() {
+        console.log(`Hii, ${this.firstName}`);
+    }
+}
+
+const jessica = new PersonCl("Jessica", 1996);
+console.log(jessica.__proto__);
+jessica.calcAge();
+
+console.log(jessica.__proto__ === PersonCl.prototype);
+
+// PersonCl.prototype.greet = function () {
+//     console.log(`Hii, ${this.firstName}`);
+// }
+jessica.greet();
+
+// 1. Classes are not hoisted (cant call before declaration);
+// 2. Classes are also first-class citizens (pass & return from functions)
+// 3. Classes are executed in strict mode;
+
+// you can use Contructor functions / classes as per your preference.
