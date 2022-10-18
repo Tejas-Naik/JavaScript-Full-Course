@@ -352,6 +352,7 @@ console.log(mike instanceof Object);
 Student.prototype.constructor = Student;
 console.dir(Student.prototype.constructor)
 */
+/*
 // Coding Challenge #3
 const Car = function (make, speed) {
     this.make = make;
@@ -392,3 +393,57 @@ tesla.accelerate();
 tesla.brake();
 tesla.accelerate();
 tesla.brake();
+*/
+// Inheritance between classes: ES6 Classes
+class PersonCl {
+    constructor(fullName, birthYear) {
+        this.fullName = fullName;
+        this.birthYear = birthYear;
+    };
+
+    // Setting prototypes
+    calcAge() {
+        console.log(2022 - this.birthYear);
+    }   //  no commas between methods
+
+    greet() {
+        console.log(`Hii, ${this.fullName}`);
+    }
+
+    get age() {
+        return 2022 - this.birthYear;
+    }
+
+    // Setting a property that already exists we also use getter
+    set fullName(name) {
+        if (name.includes(" ")) this._fullName = name;
+        else alert(`${name} is not a full name`)
+    }
+    get fullName() {
+        return this._fullName;
+    }
+
+    // Static Methods (only on original not inherits)
+    static hey() {
+        console.log("Hey there 👋");
+    }
+}
+class StudentCl extends PersonCl {
+    constructor(fullName, birthYear, course) {
+        // Always needs to happen first.
+        super(fullName, birthYear);
+        this.course = course;
+    }
+
+    introduce() {
+        console.log(`I am ${this.fullName}. I study ${this.course}.`);
+    }
+
+    calcAge() {
+        console.log(`I am ${2022 - this.birthYear} years old but as a student I feel like ${(2022 - this.birthYear) + 10}`);
+    }
+}
+
+const martha = new StudentCl("Martha Jones", 2012, "Computer Science");
+martha.introduce();
+martha.calcAge();
