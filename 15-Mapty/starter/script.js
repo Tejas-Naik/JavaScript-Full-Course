@@ -21,3 +21,15 @@ from all the above 4 steps you will be done implementing
 
 5. Development.
 */
+
+// Using Geolocation
+navigator.geolocation.getCurrentPosition(
+    function (position) {
+        const { coords: { latitude, longitude } } = position;
+        console.log(latitude, longitude);
+        console.log(`https://www.google.com/maps/@${latitude},${longitude}`);
+    },
+    function () {
+        alert("Could not get your location")
+    }
+)
