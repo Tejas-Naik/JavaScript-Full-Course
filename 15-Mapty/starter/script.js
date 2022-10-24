@@ -23,13 +23,43 @@ from all the above 4 steps you will be done implementing
 */
 
 // Using Geolocation
-navigator.geolocation.getCurrentPosition(
-    function (position) {
-        const { coords: { latitude, longitude } } = position;
-        console.log(latitude, longitude);
-        console.log(`https://www.google.com/maps/@${latitude},${longitude}`);
-    },
-    function () {
-        alert("Could not get your location")
-    }
-)
+if (navigator.geolocation)
+    navigator.geolocation.getCurrentPosition(
+        function (position) {
+            const { coords: { latitude, longitude } } = position;
+            console.log(latitude, longitude);
+            console.log(`https://www.google.com/maps/@${latitude},${longitude}`);
+
+            const coords = [latitude, longitude];
+
+            // Using leaflet to display map
+            let map = L.map('map').setView(coords, 13);
+            // let marker = L.marker(coords).addTo(map);
+
+            L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+                attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+            }).addTo(map);
+
+            map.on("click", function (mapEvent) {
+                const { lat, lng } = mapEvent.latlng;
+                L.marker([lat, lng]).addTo(map)
+                    // .bindPopup("Workout")
+                    .bindPopup(
+                        L.popup(
+                            {
+                                maxWidth: 250,
+                                minWidth: 100,
+                                autoClose: false,
+                                closeOnClick: false,
+                                className: "running-popup"
+                            })
+                    )
+                    .setPopupContent("Workout")
+                    .openPopup();
+            })
+        },
+        function () {
+            alert("Could not get your location")
+        }
+    )
