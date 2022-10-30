@@ -22,6 +22,7 @@ from all the above 4 steps you will be done implementing
 class Workout {
     date = new Date();
     id = (Date.now() + "").slice(-10);
+    clicks = 0;
 
     constructor(coords, distance, duration) {
         this.coords = coords;       // [lat, long]
@@ -33,6 +34,10 @@ class Workout {
         // prettier-ignore
         const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
         this.description = `${this.type[0].toUpperCase() + this.type.slice(1)} on ${months[this.date.getMonth()]} ${this.date.getDate()}`
+    }
+
+    click() {
+        this.clicks++;
     }
 };
 
@@ -73,14 +78,16 @@ console.log(run1, cycling1);
 // Project Architechture
 class App {
     #map;
+    #mapZoomLevel = 13;
     #mapEvent;
-    #workout = [];
+    #workouts = [];
 
     constructor() {
         this._getPosition();
         // Rendering Workout input form
         form.addEventListener("submit", this._newWorkout.bind(this))
         inputType.addEventListener("change", this._toggleElevationField)
+        containerWorkouts.addEventListener('click', this._moveToPopup.bind(this))
     }
 
     _getPosition() {
@@ -103,7 +110,7 @@ class App {
         const coords = [latitude, longitude];
 
         // Using leaflet to display map
-        this.#map = L.map('map').setView(coords, 13);
+        this.#map = L.map('map').setView(coords, this.#mapZoomLevel);
         // let marker = L.marker(coords).addTo(map);
 
         L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
@@ -169,7 +176,7 @@ class App {
         }
 
         // add new object to workout array
-        this.#workout.push(workout);
+        this.#workouts.push(workout);
         console.log(workout);
 
         // Render workout on map as marker
@@ -181,6 +188,7 @@ class App {
         // Hide form + Clearing the fields
         this._hideForm();
     }
+
     _renderWorkoutMarker(workout) {
         L.marker(workout.coords).addTo(this.#map)
             // .bindPopup("Workout")
@@ -245,6 +253,24 @@ class App {
         `;
         }
         form.insertAdjacentHTML("afterend", html);
+    }
+
+    _moveToPopup(e) {
+        const workoutEl = e.target.closest('.workout')
+
+        if (!workoutEl) return;
+
+        const workout = this.#workouts.find(work => work.id === workoutEl.dataset.id);
+
+        this.#map.setView(workout.coords, this.#mapZoomLevel, {
+            animate: true,
+            pan: {
+                duration: 1
+            }
+        });
+
+        // Using th public Interface
+        workout.click();
     }
 }
 
