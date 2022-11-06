@@ -97,3 +97,18 @@ setTimeout(() => {
     }, 1000)
   }, 1000)
 }, 1000)
+
+// Example from Python course
+const lat = 40.712776;
+const long = -74.005974;
+const endpoint = `https://api.sunrise-sunset.org/json?lat=${lat}&lng=${long}`;
+
+const request = new XMLHttpRequest();
+request.open("GET", endpoint);
+request.send();
+
+request.addEventListener("load", function () {
+  const data = JSON.parse(request.responseText);
+  console.log(`Sunrise: ${data.results.sunrise} \nSunset: ${data.results.sunset}`);
+})
+// Promises and Fetch API
