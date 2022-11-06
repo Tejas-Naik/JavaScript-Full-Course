@@ -23,7 +23,7 @@ API
 const btn = document.querySelector('.btn-country');
 const countriesContainer = document.querySelector('.countries');
 const countryName = document.querySelector('.country-name');
-
+/*
 ///////////////////////////////////////
 // AJAX call : XMLHttpRequest
 const renderCountry = function (data, className = "") {
@@ -80,11 +80,10 @@ const getCountryAndNeighbour = function (countryName) {
 }
 getCountryAndNeighbour("india");
 
-/*
-Callback Hell
---> calling one AJAX Call inside the other one (nested callbacks)
 
-*/
+//Callback Hell
+//--> calling one AJAX Call inside the other one (nested callbacks)
+
 setTimeout(() => {
   console.log("1 Second Passed");
   setTimeout(() => {
@@ -111,4 +110,25 @@ request.addEventListener("load", function () {
   const data = JSON.parse(request.responseText);
   console.log(`Sunrise: ${data.results.sunrise} \nSunset: ${data.results.sunset}`);
 })
+
+*/
 // Promises and Fetch API
+// XMTHTTPRequest
+// const endpoint = `https://restcountries.com/v3.1/name/${countryName}`;
+// const request = new XMLHttpRequest();
+// request.open("GET", endpoint);
+// request.send();
+
+
+// What are Promises?
+// An object that is used as a placeholder for the future resilt of an asynchronous operation
+
+// Promise LifeCycle
+// PENDING => SETTELED
+// FULFILLED(200)  ^  REJECTED(404)
+
+// Fetch
+const request = fetch(`https://restcountries.com/v3.1/name/india`);
+console.log(request);
+
+
