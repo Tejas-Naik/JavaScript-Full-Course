@@ -23,7 +23,7 @@ API
 const btn = document.querySelector('.btn-country');
 const countriesContainer = document.querySelector('.countries');
 const countryName = document.querySelector('.country-name');
-/*
+
 ///////////////////////////////////////
 // AJAX call : XMLHttpRequest
 const renderCountry = function (data, className = "") {
@@ -46,7 +46,7 @@ const renderCountry = function (data, className = "") {
   countriesContainer.insertAdjacentHTML("beforeend", html);
   countriesContainer.style.opacity = 1;
 }
-
+/*
 const getCountryAndNeighbour = function (countryName) {
   // AJAX Call country 1
   const endpoint = `https://restcountries.com/v3.1/name/${countryName}`;
@@ -128,7 +128,26 @@ request.addEventListener("load", function () {
 // FULFILLED(200)  ^  REJECTED(404)
 
 // Fetch
-const request = fetch(`https://restcountries.com/v3.1/name/india`);
-console.log(request);
+// const request = fetch(`https://restcountries.com/v3.1/name/india`);
+//console.log(request);
 
+// Consuming Promises
+// const getCountryData = function (country) {
+//   // All fetches return promises and we can call then on promises
+//   fetch(`https://restcountries.com/v3.1/name/${country}`)
+//     .then(function (response) {
+//       console.log(response);
+//       return response.json();
+//     }).then(function (data) {
+//       console.log(data);
+//       renderCountry(data[0])
+//     })
+// }
+// getCountryData("india");
 
+const getCountryData = function (country) {
+  fetch(`https://restcountries.com/v3.1/name/${country}`)
+    .then((response) => response.json())
+    .then((data) => renderCountry(data[0]))
+}
+getCountryData("india");
