@@ -44,12 +44,20 @@ const renderCountry = function (data, className = "") {
           </article>
           `
   countriesContainer.insertAdjacentHTML("beforeend", html);
-  // countriesContainer.style.opacity = 1;
+  countriesContainer.style.opacity = 1;
 }
 
 const renderError = function (msg) {
   countriesContainer.insertAdjacentText('beforeend', msg);
-  // countriesContainer.style.opacity = 1;
+  countriesContainer.style.opacity = 1;
+}
+const getJSON = function (url, errorMsg = "Something went wrong") {
+  return fetch(url).then((response) => {
+    if (!response.ok) {
+      throw new Error(`Country not found (${response.status})`)
+    }
+    return response.json();
+  })
 }
 
 /*
@@ -117,7 +125,7 @@ request.addEventListener("load", function () {
   console.log(`Sunrise: ${data.results.sunrise} \nSunset: ${data.results.sunset}`);
 })
 
-*/
+
 // Promises and Fetch API
 // XMTHTTPRequest
 // const endpoint = `https://restcountries.com/v3.1/name/${countryName}`;
@@ -151,14 +159,6 @@ request.addEventListener("load", function () {
 // }
 // getCountryData("india");
 
-const getJSON = function (url, errorMsg = "Something went wrong") {
-  return fetch(url).then((response) => {
-    if (!response.ok) {
-      throw new Error(`Country not found (${response.status})`)
-    }
-    return response.json();
-  })
-}
 
 // Chaining Promises
 // const getCountryData = function (country) {
@@ -244,3 +244,31 @@ btn.addEventListener("click", function () {
 
 // Throwing Errors Manually
 getCountryData("dfddffd")
+*/
+// CODING CHALLENGE #1
+const whereAmI = function (lat, long) {
+  const url = `https://geocode.xyz/${lat},${long}?geoit=json`;
+  fetch(url)
+    .then(response => {
+      console.log(response)
+      if (!response.ok) throw new Error(`problem with geocoding ${response.status}`)
+      return response.json()
+    })
+    .then(data => {
+      console.log(`you are in ${data.city}, ${data.country}`);
+      return fetch(`https://restcountries.eu/rest/v2/name/${data.country}`)
+    })
+    .then(response => {
+      console.log("Country");
+      if (!response.ok)
+        throw new Error(`Country not found. ${response.status}`)
+      return response.json()
+    }).then(data => renderCountry(data[0]))
+    .catch(err => {
+      console.error(err);
+    })
+}
+
+whereAmI(52.508, 13.381);
+// whereAmI(19.037, 72.873);
+// whereAmI(-33.933, 18.474);
