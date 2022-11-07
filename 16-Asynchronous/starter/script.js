@@ -44,8 +44,14 @@ const renderCountry = function (data, className = "") {
           </article>
           `
   countriesContainer.insertAdjacentHTML("beforeend", html);
-  countriesContainer.style.opacity = 1;
+  // countriesContainer.style.opacity = 1;
 }
+
+const renderError = function (msg) {
+  countriesContainer.insertAdjacentText('beforeend', msg);
+  // countriesContainer.style.opacity = 1;
+}
+
 /*
 const getCountryAndNeighbour = function (countryName) {
   // AJAX Call country 1
@@ -149,23 +155,30 @@ request.addEventListener("load", function () {
 const getCountryData = function (country) {
   // Country 1
   fetch(`https://restcountries.com/v3.1/name/${country}`)
-    .then((response) => response.json())
-    .then((data) => {
-      renderCountry(data[0]);
+    // then takes 2 callback functions 1st (success) 2nd (rejected)
+    .then(
+      (response) => response.json()
+        // (err) => alert(err)) // we will handle errors for all promises at the end
+        .then((data) => {
+          renderCountry(data[0]);
 
-      const neighbour = data[0].borders?.[0];
-      console.log(neighbour);
-      // Country 2
-      return fetch(`https://restcountries.com/v3.1/alpha/${neighbour}`)
+          const neighbour = data[0].borders?.[0];
+          console.log(neighbour);
+          // Country 2
+          return fetch(`https://restcountries.com/v3.1/alpha/${neighbour}`)
+        })
+        .then(response => response.json())
+        .then(data => renderCountry(data[0], "neighbour")))
+    .catch(err => {
+      console.error(err);
+      renderError(`Something went wrong ${err.message}. Try Again`);
     })
-    .then(response => response.json())
-    .then(data => {
-      renderCountry(data[0], "neighbour");
-      const neighbour = data[0].borders?.[0];
-      return fetch(`https://restcountries.com/v3.1/alpha/${neighbour}`)
+    .finally(() => {
+      countriesContainer.style.opacity = 1;
+      console.log("Finally completed");
     })
 }
-getCountryData("india");
+
 
 // Fetch one more example
 const lat = 40.712776;
@@ -179,3 +192,8 @@ fetch(endpoint)
     const sunset = data.results.sunset;
     console.log(`Sunrise: ${sunrise} \nSunset: ${sunset}`);
   })
+
+// Handling Rejected Promises
+btn.addEventListener("click", function () {
+  getCountryData("india");
+})
