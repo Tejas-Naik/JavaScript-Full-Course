@@ -145,9 +145,37 @@ request.addEventListener("load", function () {
 // }
 // getCountryData("india");
 
+// Chaining Promises
 const getCountryData = function (country) {
+  // Country 1
   fetch(`https://restcountries.com/v3.1/name/${country}`)
     .then((response) => response.json())
-    .then((data) => renderCountry(data[0]))
+    .then((data) => {
+      renderCountry(data[0]);
+
+      const neighbour = data[0].borders?.[0];
+      console.log(neighbour);
+      // Country 2
+      return fetch(`https://restcountries.com/v3.1/alpha/${neighbour}`)
+    })
+    .then(response => response.json())
+    .then(data => {
+      renderCountry(data[0], "neighbour");
+      const neighbour = data[0].borders?.[0];
+      return fetch(`https://restcountries.com/v3.1/alpha/${neighbour}`)
+    })
 }
 getCountryData("india");
+
+// Fetch one more example
+const lat = 40.712776;
+const long = -74.005974;
+const endpoint = `https://api.sunrise-sunset.org/json?lat=${lat}&lng=${long}`;
+
+fetch(endpoint)
+  .then(response => response.json())
+  .then(data => {
+    const sunrise = data.results.sunrise;
+    const sunset = data.results.sunset;
+    console.log(`Sunrise: ${sunrise} \nSunset: ${sunset}`);
+  })
