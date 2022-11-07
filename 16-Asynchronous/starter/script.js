@@ -151,24 +151,68 @@ request.addEventListener("load", function () {
 // }
 // getCountryData("india");
 
+const getJSON = function (url, errorMsg = "Something went wrong") {
+  return fetch(url).then((response) => {
+    if (!response.ok) {
+      throw new Error(`Country not found (${response.status})`)
+    }
+    return response.json();
+  })
+}
+
 // Chaining Promises
+// const getCountryData = function (country) {
+//   // Country 1
+//   fetch(`https://restcountries.com/v3.1/name/${country}`)
+//     // then takes 2 callback functions 1st (success) 2nd (rejected)
+//     .then(
+//       (response) => {
+//         console.log(response);
+
+//         if (!response.ok) {
+//           // this error will trigger catch function and the message in the `` will be the arg for catch fnct
+//           throw new Error(`Country not found (${response.status})`)
+//         }
+
+//         response.json()
+//       })
+//     // (err) => alert(err)) // we will handle errors for all promises at the end
+//     .then((data) => {
+//       renderCountry(data[0]);
+
+//       const neighbour = data[0].borders?.[0];
+//       console.log(neighbour);
+//       // Country 2
+//       return fetch(`https://restcountries.com/v3.1/alpha/${neighbour}`)
+//     })
+//     .then(response => response.json())
+//     .then(data => renderCountry(data[0], "neighbour"))
+//     .catch(err => {
+//       console.error(err);
+//       renderError(`Something went wrong ${err.message}. Try Again`);
+//     })
+//     .finally(() => {
+//       countriesContainer.style.opacity = 1;
+//       console.log("Finally completed");
+//     })
+// }
+
 const getCountryData = function (country) {
   // Country 1
-  fetch(`https://restcountries.com/v3.1/name/${country}`)
-    // then takes 2 callback functions 1st (success) 2nd (rejected)
-    .then(
-      (response) => response.json()
-        // (err) => alert(err)) // we will handle errors for all promises at the end
-        .then((data) => {
-          renderCountry(data[0]);
+  getJSON(`https://restcountries.com/v3.1/name/${country}`, "Country Not Found")
+    // (err) => alert(err)) // we will handle errors for all promises at the end
+    .then((data) => {
+      renderCountry(data[0]);
 
-          const neighbour = data[0].borders?.[0];
-          console.log(neighbour);
-          // Country 2
-          return fetch(`https://restcountries.com/v3.1/alpha/${neighbour}`)
-        })
-        .then(response => response.json())
-        .then(data => renderCountry(data[0], "neighbour")))
+      const neighbour = data[0].borders?.[0];
+      console.log(neighbour);
+
+      if (!neighbour) throw new Error(`No neighbour found`)
+
+      // Country 2
+      return getJSON(`https://restcountries.com/v3.1/alpha/${neighbour}`)
+    })
+    .then(data => renderCountry(data[0], "neighbour"))
     .catch(err => {
       console.error(err);
       renderError(`Something went wrong ${err.message}. Try Again`);
@@ -195,5 +239,8 @@ fetch(endpoint)
 
 // Handling Rejected Promises
 btn.addEventListener("click", function () {
-  getCountryData("india");
+  getCountryData("china");
 })
+
+// Throwing Errors Manually
+getCountryData("dfddffd")
