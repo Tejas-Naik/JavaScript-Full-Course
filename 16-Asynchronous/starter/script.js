@@ -272,3 +272,20 @@ const whereAmI = function (lat, long) {
 whereAmI(52.508, 13.381);
 // whereAmI(19.037, 72.873);
 // whereAmI(-33.933, 18.474);
+
+// Asynchronous BTS : The Event Loop 
+/*
+- Only one thread in a time in JS
+- there are 3 execution contexts
+- 1. Call Stack 2. Web APIs 3. Callback Queues
+
+- Asynchronous codes executed backgroundly in web APIs context
+- when its loading/timer/waiting finishes then it is put in callback queue
+
+Event Loop:
+- it looks if the call stack is empty or not
+- if it is, it puts the callbacks in the execution context - event loop take
+- Promises are not stored in callback queue
+- they are stored in Microtasks queue
+- it has priority over callback queue
+*/
