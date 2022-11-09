@@ -244,7 +244,6 @@ btn.addEventListener("click", function () {
 
 // Throwing Errors Manually
 getCountryData("dfddffd")
-*/
 // CODING CHALLENGE #1
 const whereAmI = function (lat, long) {
   const url = `https://geocode.xyz/${lat},${long}?geoit=json`;
@@ -262,18 +261,19 @@ const whereAmI = function (lat, long) {
       console.log("Country");
       if (!response.ok)
         throw new Error(`Country not found. ${response.status}`)
-      return response.json()
-    }).then(data => renderCountry(data[0]))
-    .catch(err => {
+        return response.json()
+      }).then(data => renderCountry(data[0]))
+      .catch(err => {
       console.error(err);
     })
-}
+  }
+  
+  whereAmI(52.508, 13.381);
+  // whereAmI(19.037, 72.873);
+  // whereAmI(-33.933, 18.474);
+  */
 
-whereAmI(52.508, 13.381);
-// whereAmI(19.037, 72.873);
-// whereAmI(-33.933, 18.474);
-
-// Asynchronous BTS : The Event Loop 
+// Asynchronous BTS : The Event Loop
 /*
 - Only one thread in a time in JS
 - there are 3 execution contexts
@@ -289,3 +289,24 @@ Event Loop:
 - they are stored in Microtasks queue
 - it has priority over callback queue
 */
+
+// Event Loop in practice
+console.log("Test start");
+setTimeout(() => console.log("0 sec timer"), 0);
+Promise.resolve("Reserved promise 1").then(res => console.log(res));
+
+Promise.resolve("Reserved promise 2").then(res => {
+  for (let i = 0; i < 1000000000; i++) { }
+  console.log(res);
+})
+
+console.log("Test end");
+
+/*
+Steps in which the code will be executed
+1. GLOBAL CONTEXT CODE (2 console.log())
+2. Promises because they are above tier of Callback functions
+3. Callback queues (timer)
+*/
+
+
