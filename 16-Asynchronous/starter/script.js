@@ -308,6 +308,8 @@ Steps in which the code will be executed
 2. Promises because they are above tier of Callback functions
 3. Callback queues (timer)
 */
+
+/*
 // BUILDING A SIIMPLE PROMISE
 const lotteryPromise = new Promise(function (resolve, reject) {
   console.log("Lottery draw is happening");
@@ -340,4 +342,47 @@ wait(2).then(() => {
 // Immideate resolve/reject
 Promise.resolve("abc").then(res => console.log(res));
 Promise.reject(new Error("Problem!")).catch(err => console.error(err));
+*/
 
+// Promisifying geolocation API
+const getPosition = function () {
+  return new Promise(function (resolve, reject) {
+    // navigator.geolocation.getCurrentPosition(
+    //   position => resolve(position),
+    //   err => reject(err)
+    // )
+    navigator.geolocation.getCurrentPosition(resolve, reject);
+  })
+}
+
+getPosition().then(pos => console.log(pos))
+
+const whereAmI = function () {
+  getPosition().then(pos => {
+    const { latitude: lat, longitude: long } = pos.coords;
+    console.log(pos)
+
+    const url = `https://geocode.xyz/${lat},${long}?geoit=json`;
+    return fetch(url)
+  })
+    .then(response => {
+      console.log(response)
+      if (!response.ok) throw new Error(`problem with geocoding ${response.status}`)
+      return response.json()
+    })
+    .then(data => {
+      console.log(`you are in ${data.city}, ${data.country}`);
+      return fetch(`https://restcountries.eu/rest/v2/name/${data.country}`)
+    })
+    .then(response => {
+      console.log("Country");
+      if (!response.ok)
+        throw new Error(`Country not found. ${response.status}`)
+      return response.json()
+    }).then(data => renderCountry(data[0]))
+    .catch(err => {
+      console.error(err);
+    })
+}
+
+btn.addEventListener("click", whereAmI);
