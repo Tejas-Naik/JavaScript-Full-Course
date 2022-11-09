@@ -288,7 +288,6 @@ Event Loop:
 - Promises are not stored in callback queue
 - they are stored in Microtasks queue
 - it has priority over callback queue
-*/
 
 // Event Loop in practice
 console.log("Test start");
@@ -301,6 +300,7 @@ Promise.resolve("Reserved promise 2").then(res => {
 })
 
 console.log("Test end");
+*/
 
 /*
 Steps in which the code will be executed
@@ -308,5 +308,36 @@ Steps in which the code will be executed
 2. Promises because they are above tier of Callback functions
 3. Callback queues (timer)
 */
+// BUILDING A SIIMPLE PROMISE
+const lotteryPromise = new Promise(function (resolve, reject) {
+  console.log("Lottery draw is happening");
+  setTimeout(function () {
+    // 50% chance of winning
+    if (Math.random() > .5) {
+      resolve("You win");
+    } else {
+      reject(new Error("Try again next time"));
+    }
+  }, 2000)
+})
 
+lotteryPromise
+  .then(response => console.log(response))
+  .catch(err => console.error(err));
+
+// Promisifying SetTimeout
+const wait = function (seconds) {
+  return new Promise(function (resolve) {
+    setTimeout(resolve, seconds * 1000);
+  })
+}
+
+wait(2).then(() => {
+  console.log("I waited for 2 seconds");
+  return wait(1)
+}).then(() => console.log("Waited another second"));
+
+// Immideate resolve/reject
+Promise.resolve("abc").then(res => console.log(res));
+Promise.reject(new Error("Problem!")).catch(err => console.error(err));
 
