@@ -34,11 +34,11 @@ const renderCountry = function (data, className = "") {
     <article class="country ${className}">
           <img class="country__img" src="${data.flags.png}" />
           <div class="country__data">
-          <h3 class="country__name">${data.name.common}</h3>
-            <h4 class="country__region">${data.continents[0]}</h4>
+          <h3 class="country__name">${data.name}</h3>
+            <h4 class="country__region">${data.region}</h4>
             <p class="country__row"><span>👫</span>${(+data.population / 10000000).toFixed(2)} Crores</p>
             <p class="country__row"><span>💰</span>${currentCurrency?.symbol} ${currentCurrency?.name}</p>
-            <p class="country__row"><span>🗣️</span>${Object.values(data.languages)[0]} </p>
+            <p class="country__row"><span>🗣️</span>${Object.values(data.languages)[0].name} </p>
             
           </div>
           </article>
@@ -267,7 +267,7 @@ const whereAmI = function (lat, long) {
       console.error(err);
     })
   }
-  
+
   whereAmI(52.508, 13.381);
   // whereAmI(19.037, 72.873);
   // whereAmI(-33.933, 18.474);
@@ -342,14 +342,13 @@ wait(2).then(() => {
 // Immideate resolve/reject
 Promise.resolve("abc").then(res => console.log(res));
 Promise.reject(new Error("Problem!")).catch(err => console.error(err));
-*/
 
 // Promisifying geolocation API
 const getPosition = function () {
   return new Promise(function (resolve, reject) {
     // navigator.geolocation.getCurrentPosition(
-    //   position => resolve(position),
-    //   err => reject(err)
+      //   position => resolve(position),
+      //   err => reject(err)
     // )
     navigator.geolocation.getCurrentPosition(resolve, reject);
   })
@@ -377,12 +376,42 @@ const whereAmI = function () {
     .then(response => {
       console.log("Country");
       if (!response.ok)
-        throw new Error(`Country not found. ${response.status}`)
+      throw new Error(`Country not found. ${response.status}`)
       return response.json()
     }).then(data => renderCountry(data[0]))
     .catch(err => {
       console.error(err);
     })
+  }
+
+  btn.addEventListener("click", whereAmI);
+*/
+// Consuming Promises with Async/Await
+const getPosition = function () {
+  return new Promise(function (resolve, reject) {
+    navigator.geolocation.getCurrentPosition(resolve, reject);
+  })
 }
 
-btn.addEventListener("click", whereAmI);
+
+const whereAmI = async function () {
+  // Geo Location
+  const pos = await getPosition();
+  const { latitude: lat, longitude: long } = pos.coords;
+  console.log(lat, long);
+
+  // Reversed Geocoding
+  const resGeo = await fetch(`https://geocode.xyz/${lat},${long}?geoit=json`);
+  const dataGeo = await resGeo.json();
+  console.log(dataGeo);
+
+  // Country Data
+  const res = await fetch(`https://restcountries.com/v2/name/${dataGeo.country}`);
+  console.log(res);
+  const data = await res.json();
+  renderCountry(data[0])
+}
+
+whereAmI();
+console.log("Before Async/Await");
+
