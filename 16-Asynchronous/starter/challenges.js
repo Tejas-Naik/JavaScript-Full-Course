@@ -100,4 +100,19 @@ createImage("img/img-1.jpg")
 loadNPause();
 */
 
+const loadAll = async function (images) {
+    try {
+        let imgs = images.map(async img => await createImage(img));
+        console.log(imgs);
+
+        const imgsEl = await Promise.all(imgs);
+        console.log(imgsEl);
+
+        imgsEl.forEach(img => img.classList.add("parallel"))
+
+    } catch (err) {
+        console.error(err)
+    }
+}
+loadAll(['img/img-1.jpg', 'img/img-2.jpg', 'img/img-3.jpg']);
 
