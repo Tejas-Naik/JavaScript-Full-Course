@@ -21,7 +21,6 @@
 // whereAmI(19.037, 72.873);
 // whereAmI(-33.933, 18.474);
 
-
 // CODING Challenge #2
 const imgContainer = document.querySelector(".images");
 const createImage = function (imgPath) {
@@ -47,7 +46,7 @@ const wait = function (seconds) {
 }
 
 let currentImg;
-
+/*
 createImage("img/img-1.jpg")
     .then(img => {
         currentImg = img;
@@ -72,3 +71,33 @@ createImage("img/img-1.jpg")
         currentImg.style.display = "none";
     })
     .catch(err => console.error(err))
+    
+    const loadNPause = async function () {
+        try {
+            // Load image 1
+            let img = await createImage('img/img-1.jpg');
+            console.log("Image 1 loaded");
+            await wait(2);
+            img.style.display = 'none';
+            
+            // Load image 2
+            img = await createImage('img/img-2.jpg');
+            console.log("Image 2 loaded");
+        await wait(2);
+        img.style.display = 'none';
+
+        // Load image 1
+        img = await createImage('img/img-3.jpg');
+        console.log("Image 3 loaded");
+        await wait(2);
+        img.style.display = 'none';
+        
+    } catch (err) {
+        console.error(err.message);
+    }
+}
+
+loadNPause();
+*/
+
+
