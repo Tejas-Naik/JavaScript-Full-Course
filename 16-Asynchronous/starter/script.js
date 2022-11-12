@@ -399,7 +399,6 @@ const whereAmI = async function () {
     // Geo Location
     const pos = await getPosition();
     const { latitude: lat, longitude: long } = pos.coords;
-    console.log(lat, long);
 
     // Reversed Geocoding
     const resGeo = await fetch(`https://geocode.xyz/${lat},${long}?geoit=json`);
@@ -408,25 +407,47 @@ const whereAmI = async function () {
     if (!resGeo.ok) throw new Error("Problem getting location data (403)")
 
     const dataGeo = await resGeo.json();
-    console.log(dataGeo);
 
     // Country Data
     const res = await fetch(`https://restcountries.com/v2/name/${dataGeo.country}`);
     // Error-handling with restcountries
     if (!res.ok) throw new Error("Problem getting country data (403)")
 
-
-    console.log(res);
     const data = await res.json();
     renderCountry(data[0]);
+
+    return `You are in ${dataGeo.city}, ${dataGeo.country}`;
   } catch (err) {
     console.error(err);
     renderError(`Something wend wrong... ${err.message}`);
+
+    // Rejecting promise returned from async function
+    throw err;
   }
 }
 
-whereAmI();
-console.log("Before Async/Await");
+console.log("1. Will get location");
+// const city = whereAmI();
+// console.log(city);
+
+// Getting the values from the async promises
+// whereAmI()
+//   .then(city => console.log(`2: 😁${city}`))
+//   .catch(err => console.log(`2: 😁${err}`))
+//   .finally(() => console.log("3. Finished Getting Location"));
+
+(async function () {
+  try {
+    const res = await whereAmI();
+    console.log(`2. ${res}`);
+  }
+  catch (err) {
+    console.error(`2. ${err.message}`);
+  }
+  finally {
+    console.log("3. Finished Getting Location");
+  }
+})()
 
 // Error Handling with try...catch
 // How try-catch works in general
