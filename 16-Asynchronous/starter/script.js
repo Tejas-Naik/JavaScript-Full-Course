@@ -395,23 +395,45 @@ const getPosition = function () {
 
 
 const whereAmI = async function () {
-  // Geo Location
-  const pos = await getPosition();
-  const { latitude: lat, longitude: long } = pos.coords;
-  console.log(lat, long);
+  try {
+    // Geo Location
+    const pos = await getPosition();
+    const { latitude: lat, longitude: long } = pos.coords;
+    console.log(lat, long);
 
-  // Reversed Geocoding
-  const resGeo = await fetch(`https://geocode.xyz/${lat},${long}?geoit=json`);
-  const dataGeo = await resGeo.json();
-  console.log(dataGeo);
+    // Reversed Geocoding
+    const resGeo = await fetch(`https://geocode.xyz/${lat},${long}?geoit=json`);
 
-  // Country Data
-  const res = await fetch(`https://restcountries.com/v2/name/${dataGeo.country}`);
-  console.log(res);
-  const data = await res.json();
-  renderCountry(data[0])
+    // creating an error for 403 (3+requests)
+    if (!resGeo.ok) throw new Error("Problem getting location data (403)")
+
+    const dataGeo = await resGeo.json();
+    console.log(dataGeo);
+
+    // Country Data
+    const res = await fetch(`https://restcountries.com/v2/name/${dataGeo.country}`);
+    // Error-handling with restcountries
+    if (!res.ok) throw new Error("Problem getting country data (403)")
+
+
+    console.log(res);
+    const data = await res.json();
+    renderCountry(data[0]);
+  } catch (err) {
+    console.error(err);
+    renderError(`Something wend wrong... ${err.message}`);
+  }
 }
 
 whereAmI();
 console.log("Before Async/Await");
 
+// Error Handling with try...catch
+// How try-catch works in general
+// try {
+//   const x = 1;
+//   let y = 2;
+//   x = 2;
+// } catch (err) {
+//   alert(err);
+// }
