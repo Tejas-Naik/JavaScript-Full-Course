@@ -30,3 +30,13 @@ MODULES IN JS
 (imports are hoisted (executed at the top of the file)).
 5. HTML Linking                     <script type="module">          <script>
 6. File downloading                 Asynchronous                    Synchronous
+
+Imports and Exports
+- Imports happen first(top) of the code.
+- First the imported code executes
+- You cannot use the variables declares in the module directly in the other modules you have to export them
+
+Exports;
+- 2 types of Exports
+-- Default Exports
+-- Named Exports
