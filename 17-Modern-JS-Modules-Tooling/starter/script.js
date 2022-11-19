@@ -52,8 +52,8 @@ lastPost.then(last => console.log(last));
 // Top level await
 const lastPost2 = await getLastPost();
 console.log(lastPost2);
-*/
 
+//The Module pattern
 const shoppingCart2 = (function () {
     const cart = [];
     const shoppingCost = 10;
@@ -81,3 +81,17 @@ shoppingCart2.addToCart("apple", 2);
 shoppingCart2.addToCart("pizza", 4);
 console.log(shoppingCart2);
 console.log(shoppingCart2.shoppingCost);
+*/
+
+// Common JS Modules
+// THis doesnt work in the browser but work in the node 
+
+// Export
+export.addToCart = function (product, quantity) {
+    cart.push({ product: quantity });
+    console.log(`${quantity} ${product} added to cart`);
+}
+
+// Import
+const { addToCart } = require('./shoppingCart.js');
+
