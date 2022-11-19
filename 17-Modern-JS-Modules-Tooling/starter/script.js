@@ -84,14 +84,31 @@ console.log(shoppingCart2.shoppingCost);
 */
 
 // Common JS Modules
-// THis doesnt work in the browser but work in the node 
+// THis doesnt work in the browser but work in the node
 
 // Export
-export.addToCart = function (product, quantity) {
-    cart.push({ product: quantity });
-    console.log(`${quantity} ${product} added to cart`);
-}
+// export.addToCart = function (product, quantity) {
+//     cart.push({ product: quantity });
+//     console.log(`${quantity} ${product} added to cart`);
+// }
 
-// Import
-const { addToCart } = require('./shoppingCart.js');
+// // Import
+// const { addToCart } = require('./shoppingCart.js');
 
+// importing cloneDeep
+import cloneDeep from "./node_modules/lodash-es/cloneDeep.js";
+// Deepclone helps us to copy the nested objects
+const state = {
+    cart: [
+        { product: "bread", quantity: 5 },
+        { product: "pizza", quantity: 4 },
+    ],
+    user: { loggedIn: true }
+};
+
+const stateClone = Object.assign({}, state);
+const stateDeepClone = cloneDeep(state);
+
+state.user.loggedIn = false;
+console.log(stateClone);
+console.log(stateDeepClone);

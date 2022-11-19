@@ -40,3 +40,10 @@ Exports;
 - 2 types of Exports
 -- Default Exports
 -- Named Exports
+
+How to Use NPM
+1. NPM Init (get the package.json)
+2. install the dependencies
+3. add node_modules/* to gitignore
+4. push it to git 
+5. npm i to install all the dependencies
