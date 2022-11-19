@@ -1,4 +1,3 @@
-/*
 // Importing module
 // import "./shoppingCart.js";
 // import {
@@ -81,7 +80,6 @@ shoppingCart2.addToCart("apple", 2);
 shoppingCart2.addToCart("pizza", 4);
 console.log(shoppingCart2);
 console.log(shoppingCart2.shoppingCost);
-*/
 
 // Common JS Modules
 // THis doesnt work in the browser but work in the node
@@ -96,7 +94,7 @@ console.log(shoppingCart2.shoppingCost);
 // const { addToCart } = require('./shoppingCart.js');
 
 // importing cloneDeep
-import cloneDeep from "./node_modules/lodash-es/cloneDeep.js";
+import cloneDeep from "lodash-es";
 // Deepclone helps us to copy the nested objects
 const state = {
     cart: [
@@ -112,3 +110,4 @@ const stateDeepClone = cloneDeep(state);
 state.user.loggedIn = false;
 console.log(stateClone);
 console.log(stateDeepClone);
+

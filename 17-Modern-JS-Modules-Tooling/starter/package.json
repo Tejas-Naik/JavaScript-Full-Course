@@ -1,15 +1,19 @@
 {
-  "name": "17-modern-js-modules-tooling",
+  "name": "starter",
   "version": "1.0.0",
   "description": "",
-  "main": "clean.js",
+  "main": "script.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
   },
   "author": "Tejas",
   "license": "ISC",
   "dependencies": {
     "leaflet": "^1.9.3",
     "lodash-es": "^4.17.21"
+  },
+  "devDependencies": {
+    "parcel-bundler": "^1.12.5"
   }
 }
