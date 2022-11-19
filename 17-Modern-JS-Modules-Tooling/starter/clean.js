@@ -53,3 +53,10 @@ const logBigExpenses = function (bigLimit) {
 console.log(budget);
 logBigExpenses(1000);
 
+// Imperative vs Declarative
+// Imperative : How to do things (step by step)
+// Declarative : What to do (description / abstracted)
+// Functional Programming : Declarative, pure functions, with no side effects
+// -- Side effect : not changing any outside vars
+// -- Pure functions : doesnt depend on outside vars to run (same input always returns same output)
+
