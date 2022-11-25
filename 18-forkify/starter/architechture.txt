@@ -1,0 +1,32 @@
+MVC Model (Model view Controller).
+Why worry about architecture?
+- Structure
+- Maintanability
+- Expandibility
+
+create your own architecture if possible (small apps)
+otherwise, use well defined architectures from software developers
+- MVC, MVP(presenter), Flux, etc...
+
+COMPONENTS OF ANY ARCHITECTURE:
+1. Business Logic
+-- Solves the actual business problem
+-- sending messages, storing transactions, calculating taxes
+
+2. State (redux)
+-- stores all the data about the application
+-- should be the "single source of truth"
+-- UI sync w/ state
+-- state libraries exist
+
+3. HTTP Library
+-- recieving AJAX calls
+-- optional but necessary
+
+4. Application Logic(router)
+-- implementation of the application itself
+-- Handles navigation and UI events
+
+5. Presentation Logic(UI Layer)
+-- visible part of the application
+-- Displays application state (UI)
