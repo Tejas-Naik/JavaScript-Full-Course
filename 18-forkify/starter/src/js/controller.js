@@ -33,6 +33,7 @@ const controlRecipes = async function () {
 
 const controlSearchResults = async function () {
   try {
+    model.state.search.page = 1;
     resultsView.renderSpinner();
     console.log(resultsView);
     // 1) Get search query
@@ -62,6 +63,7 @@ const contorlPagination = function (gotoPage) {
   paginationView.render(model.state.search);
 
 }
+
 
 const init = function () {
   recipeView.addHandlerRender(controlRecipes);
